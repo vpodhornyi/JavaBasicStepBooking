@@ -5,21 +5,6 @@ public class Client extends Person {
     super(name, password);
   }
 
-  @Override
-  public boolean isClient() {
-    return true;
-  }
-
-  @Override
-  public boolean isEmployee() {
-    return false;
-  }
-
-  @Override
-  public boolean isAdmin() {
-    return false;
-  }
-
 
   @Override
   public String toString() {

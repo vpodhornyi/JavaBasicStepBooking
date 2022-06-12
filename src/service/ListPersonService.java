@@ -1,6 +1,7 @@
 package service;
 
 import dao.PersonDao;
+import model.Employee;
 import model.Person;
 import model.Ticket;
 
@@ -26,5 +27,15 @@ public class ListPersonService implements PersonService {
   @Override
   public void delete(Person person) {
 
+  }
+
+  @Override
+  public void booking(Person person, Ticket ticket) {
+    person.booking(ticket);
+  }
+
+  @Override
+  public void booking(Employee employee, Person person, Ticket ticket) {
+    employee.booking(person, ticket);
   }
 }

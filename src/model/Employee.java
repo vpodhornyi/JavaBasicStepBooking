@@ -5,10 +5,6 @@ public class Employee extends Client {
     super(name, password);
   }
 
-  public void booking(Person person, Ticket ticket) {
-    person.booking(ticket);
-  }
-
   public void removeBooking(Person person, Ticket ticket) {
     person.booking(ticket);
   }
@@ -17,16 +13,6 @@ public class Employee extends Client {
     return new Client(name, password);
   }
 
-
-  @Override
-  public boolean isEmployee() {
-    return true;
-  }
-
-  @Override
-  public boolean isAdmin() {
-    return false;
-  }
 
   @Override
   public String toString() {

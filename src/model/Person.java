@@ -26,17 +26,23 @@ public abstract class Person extends Id implements Serializable {
     return password;
   }
 
-  public void booking(Ticket ticket){
-    this.tickets.add(ticket);
+  public void addTicket(Ticket ticket) {
+    tickets.add(ticket);
+  }
+
+  public void booking(Ticket ticket) {
+    this.addTicket(ticket);
+    ticket.setOwner(this);
+  }
+
+  public void booking(Person person, Ticket ticket) {
+    person.addTicket(ticket);
+    ticket.setOwner(person);
   }
 
   public void removeBooking(Ticket ticket){
     this.tickets.remove(ticket);
   }
-
-  public abstract boolean isClient();
-  public abstract boolean isEmployee();
-  public abstract boolean isAdmin();
 
   @Override
   public String toString() {

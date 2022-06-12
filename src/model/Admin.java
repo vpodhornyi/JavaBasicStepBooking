@@ -11,11 +11,6 @@ public class Admin extends Employee{
   }
 
   @Override
-  public boolean isAdmin() {
-    return true;
-  }
-
-  @Override
   public String toString() {
     return "Admin{" +
         "id='" + this.getId() + '\'' +
