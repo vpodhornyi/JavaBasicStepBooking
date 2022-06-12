@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DefaultDao<T> {
-  void add(Person user);
+  void add(T obj);
 
-  void delete(Person user);
+  Optional<T> get(String id);
+
+  void delete(T obj);
 
   default void save(List<T> list, String fileName) {
     try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName));) {

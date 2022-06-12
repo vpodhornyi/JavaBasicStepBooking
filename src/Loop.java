@@ -1,10 +1,10 @@
-import controller.UserController;
+import controller.PersonController;
 
 public class Loop {
-  UserController userController;
+  PersonController personController;
 
-  public Loop(UserController userController) {
-    this.userController = userController;
+  public Loop(PersonController personController) {
+    this.personController = personController;
   }
 
 

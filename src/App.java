@@ -1,9 +1,9 @@
-import controller.UserController;
+import controller.PersonController;
 import dao.ListPersonDao;
 import dao.PersonDao;
 import model.Client;
 import model.Person;
-import service.ListUserService;
+import service.ListPersonService;
 
 public class App {
   public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class App {
 
 //    users.get().forEach(System.out::println);
 
-    Loop loop = new Loop(new UserController(new ListUserService(new ListPersonDao())));
+    Loop loop = new Loop(new PersonController(new ListPersonService(new ListPersonDao())));
 
 //    loop.run();
   }

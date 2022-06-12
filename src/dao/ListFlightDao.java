@@ -12,12 +12,17 @@ public class ListFlightDao implements FlightDao{
   private List<Flight> flights = new ArrayList<>();
 
   @Override
-  public void add(Person user) {
+  public void add(Flight obj) {
 
   }
 
   @Override
-  public void delete(Person user) {
+  public Optional<Flight> get(String id) {
+    return Optional.empty();
+  }
+
+  @Override
+  public void delete(Flight obj) {
 
   }
 
@@ -37,4 +42,6 @@ public class ListFlightDao implements FlightDao{
         "flight=[" + flights.stream().map(Flight::toString).reduce("", (u1, u2) -> u1 + "\n" + u2) +
         "]}";
   }
+
+
 }

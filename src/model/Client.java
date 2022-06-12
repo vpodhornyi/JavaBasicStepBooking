@@ -5,6 +5,21 @@ public class Client extends Person {
     super(name, password);
   }
 
+  @Override
+  public boolean isClient() {
+    return true;
+  }
+
+  @Override
+  public boolean isEmployee() {
+    return false;
+  }
+
+  @Override
+  public boolean isAdmin() {
+    return false;
+  }
+
 
   @Override
   public String toString() {
@@ -20,6 +35,6 @@ public class Client extends Person {
     if (this == o) return true;
     if (!(o instanceof Client client)) return false;
 
-    return this.getName().equals(client.getName());
+    return this.getId().equals(client.getId());
   }
 }
