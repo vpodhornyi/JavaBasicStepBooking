@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public abstract class Id {
+public abstract class Id  implements Serializable {
   private final String id;
 
   public Id() {
