@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ListFlightDao implements FlightDao{
+public class ListFlightDao implements FlightDao {
   private final String FILE_NAME = "flights.dat";
   private List<Flight> flights = new ArrayList<>();
 
   @Override
-  public void add(Flight obj) {
-
+  public void add(Flight flight) {
+    this.flights.add(flight);
   }
 
   @Override
@@ -22,8 +22,8 @@ public class ListFlightDao implements FlightDao{
   }
 
   @Override
-  public void delete(Flight obj) {
-
+  public void delete(Flight flight) {
+    this.flights.remove(flight);
   }
 
   public void save() {
@@ -39,9 +39,7 @@ public class ListFlightDao implements FlightDao{
   @Override
   public String toString() {
     return "ListFlightDao{" +
-        "flight=[" + flights.stream().map(Flight::toString).reduce("", (u1, u2) -> u1 + "\n" + u2) +
+        "flight=[" + flights.stream().map(Flight::toString).reduce("", (f1, f2) -> f1 + "\n" + f2) +
         "]}";
   }
-
-
 }

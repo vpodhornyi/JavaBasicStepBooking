@@ -14,19 +14,20 @@ public class ListPersonService implements PersonService {
     this.personDao = uerDao;
   }
 
-  @Override
-  public void add(Person user) {
-    personDao.add(user);
+  public void add(Person person) {
+    personDao.add(person);
   }
 
-  @Override
-  public Optional<Person> get(String id) {
+  public Optional<Person> findAll() {
     return Optional.empty();
   }
 
-  @Override
-  public void delete(Person person) {
+  public Optional<Person> findById(String id) {
+    return Optional.empty();
+  }
 
+  public void delete(Person person) {
+    this.personDao.delete(person);
   }
 
   @Override
@@ -37,5 +38,13 @@ public class ListPersonService implements PersonService {
   @Override
   public void booking(Employee employee, Person person, Ticket ticket) {
     employee.booking(person, ticket);
+  }
+
+  public void save() {
+    this.personDao.save();
+  }
+
+  public void load() {
+    this.personDao.load();
   }
 }

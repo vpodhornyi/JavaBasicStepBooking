@@ -5,6 +5,8 @@ import model.Person;
 import model.Ticket;
 import service.PersonService;
 
+import java.util.Optional;
+
 public class PersonController {
 
   private final PersonService personService;
@@ -13,15 +15,23 @@ public class PersonController {
     this.personService = personService;
   }
 
-  public void add(Person user) {
-    personService.add(user);
+  public void createPerson() {
+
+    personService.add(null);
   }
 
-  public void clientBooking(Person person, Ticket ticket) {
-    personService.booking(person, ticket);
+  public void clientBooking() {
+
+    personService.booking(null, null);
   }
 
-  public void employeeBooking(Employee employee, Person person, Ticket ticket) {
-    personService.booking(employee, person, ticket);
+  public void employeeBooking() {
+
+    personService.booking(null, null, null);
+  }
+
+  public void printAllPersons() {
+
+    Optional<Person> optionalFlight = personService.findAll();
   }
 }
