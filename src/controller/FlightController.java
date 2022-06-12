@@ -3,6 +3,7 @@ package controller;
 import model.Flight;
 import service.FlightService;
 
+import java.util.List;
 import java.util.Optional;
 
 public class FlightController {
@@ -26,6 +27,6 @@ public class FlightController {
   public void printAllFlights() {
 
 
-  Optional<Flight> optionalFlight = flightService.findAll();
+  List<Flight> optionalFlight = flightService.findAll();
   }
 }

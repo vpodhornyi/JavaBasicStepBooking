@@ -12,6 +12,7 @@ public class Client extends Person {
         "id='" + this.getId() + '\'' +
         ", name='" + this.getName() + '\'' +
         ", password='" + this.getPassword() + '\'' +
+        ", tickets='" + this.getTickets() + '\'' +
         '}';
   }
 

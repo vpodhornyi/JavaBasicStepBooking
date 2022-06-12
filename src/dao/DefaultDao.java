@@ -12,7 +12,9 @@ import java.util.Optional;
 public interface DefaultDao<T> {
   void add(T obj);
 
-  Optional<T> get(String id);
+  List<T> findAll();
+
+  Optional<T> findById(String id);
 
   void delete(T obj);
 

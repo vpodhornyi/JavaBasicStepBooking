@@ -26,6 +26,10 @@ public abstract class Person extends Id implements Serializable {
     return password;
   }
 
+  public Set<Ticket> getTickets() {
+    return new HashSet<>(this.tickets);
+  }
+
   public void addTicket(Ticket ticket) {
     tickets.add(ticket);
   }

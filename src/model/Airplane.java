@@ -21,4 +21,8 @@ public enum Airplane {
     this.name = name;
     this.countPassengers = countPassengers;
   }
+
+  public String getName() {
+    return this.name;
+  }
 }

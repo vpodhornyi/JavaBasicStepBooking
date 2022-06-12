@@ -11,6 +11,15 @@ public abstract class Ticket extends Id implements Serializable {
   public Ticket(Double cost, Flight flight) {
     this.cost = cost;
     this.flight = flight;
+    this.flight.addTicket(this);
+  }
+
+  public boolean isBooking(){
+    return this.owner != null;
+  }
+
+  public boolean isNotBooking(){
+    return this.owner == null;
   }
 
   public Optional<Person> getOwner(){
@@ -27,5 +36,14 @@ public abstract class Ticket extends Id implements Serializable {
 
   public Flight getFlight() {
     return this.flight;
+  }
+
+  @Override
+  public String toString() {
+    return "Ticket{" +
+        "cost=" + cost +
+        ", booking=" + (this.getOwner().isPresent() ? "true" : "false") +
+        ", flight=" + flight.getId() +
+        '}';
   }
 }

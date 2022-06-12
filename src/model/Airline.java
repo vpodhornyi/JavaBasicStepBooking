@@ -9,4 +9,8 @@ public enum Airline {
   Airline(String name) {
     this.name = name;
   }
+
+  public String getName() {
+    return this.name;
+  }
 }

@@ -2,7 +2,9 @@ package service;
 
 import dao.FlightDao;
 import model.Flight;
+import model.Ticket;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ListFlightService implements FlightService {
@@ -18,17 +20,21 @@ public class ListFlightService implements FlightService {
   }
 
   @Override
-  public Optional<Flight> findAll() {
-    return Optional.empty();
+  public List<Flight> findAll() {
+    return this.flightDao.findAll();
   }
 
   @Override
   public Optional<Flight> findById(String id) {
-    return Optional.empty();
+    return this.flightDao.findById(id);
   }
 
   public void delete(Flight flight) {
     this.flightDao.delete(flight);
+  }
+
+  public Ticket getFreeTicket(){
+    return null;
   }
 
   public void save(){

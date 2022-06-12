@@ -5,6 +5,7 @@ import model.Employee;
 import model.Person;
 import model.Ticket;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ListPersonService implements PersonService {
@@ -18,12 +19,13 @@ public class ListPersonService implements PersonService {
     personDao.add(person);
   }
 
-  public Optional<Person> findAll() {
-    return Optional.empty();
+  public List<Person> findAll() {
+    return this.personDao.findAll();
   }
 
   public Optional<Person> findById(String id) {
-    return Optional.empty();
+
+    return this.personDao.findById(id);
   }
 
   public void delete(Person person) {

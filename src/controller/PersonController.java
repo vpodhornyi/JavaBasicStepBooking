@@ -5,6 +5,7 @@ import model.Person;
 import model.Ticket;
 import service.PersonService;
 
+import java.util.List;
 import java.util.Optional;
 
 public class PersonController {
@@ -32,6 +33,6 @@ public class PersonController {
 
   public void printAllPersons() {
 
-    Optional<Person> optionalFlight = personService.findAll();
+    List<Person> optionalFlight = personService.findAll();
   }
 }

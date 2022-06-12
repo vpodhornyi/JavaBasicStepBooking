@@ -9,7 +9,11 @@ import java.util.Optional;
 
 public class ListFlightDao implements FlightDao {
   private final String FILE_NAME = "flights.dat";
-  private List<Flight> flights = new ArrayList<>();
+  private List<Flight> flights;
+
+  public ListFlightDao() {
+    this.flights = new ArrayList<>();
+  }
 
   @Override
   public void add(Flight flight) {
@@ -17,8 +21,15 @@ public class ListFlightDao implements FlightDao {
   }
 
   @Override
-  public Optional<Flight> get(String id) {
-    return Optional.empty();
+  public List<Flight> findAll() {
+    return new ArrayList<>(this.flights);
+  }
+
+  @Override
+  public Optional<Flight> findById(String id) {
+    return this.flights.stream()
+        .filter(f -> f.getId().equals(id))
+        .findFirst();
   }
 
   @Override

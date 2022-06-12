@@ -2,12 +2,13 @@ package service;
 
 import model.Person;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface DefaultService<T> {
   void add(T obj);
 
-  Optional<T> findAll();
+  List<T> findAll();
 
   Optional<T> findById(String id);
 
