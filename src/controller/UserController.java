@@ -1,6 +1,6 @@
 package controller;
 
-import model.User;
+import model.Person;
 import service.UserService;
 
 public class UserController {
@@ -11,7 +11,7 @@ public class UserController {
     this.userService = userService;
   }
 
-  public void add(User user) {
+  public void add(Person user) {
     userService.add(user);
   }
 }

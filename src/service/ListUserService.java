@@ -1,17 +1,17 @@
 package service;
 
-import dao.UserDao;
-import model.User;
+import dao.PersonDao;
+import model.Person;
 
 public class ListUserService implements UserService {
-  private final UserDao userDao;
+  private final PersonDao userDao;
 
-  public ListUserService(UserDao uerDao) {
+  public ListUserService(PersonDao uerDao) {
     this.userDao = uerDao;
   }
 
   @Override
-  public void add(User user) {
+  public void add(Person user) {
     userDao.add(user);
   }
 

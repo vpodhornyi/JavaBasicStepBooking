@@ -1,40 +1,31 @@
 import controller.UserController;
-import dao.ListUserDao;
-import dao.UserDao;
+import dao.ListPersonDao;
+import dao.PersonDao;
 import model.Client;
-import model.User;
+import model.Person;
 import service.ListUserService;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 
 public class App {
   public static void main(String[] args) {
-    User client1 = new Client("Viktor", "111");
-    User client2 = new Client("Alex", "111");
+    Person client1 = new Client("Viktor", "111");
+    Person client2 = new Client("Alex", "111");
 
-    UserDao userDao = new ListUserDao();
+    PersonDao personDao = new ListPersonDao();
+    
 
-    userDao.add(client1);
-    userDao.add(client2);
+    personDao.add(client1);
+    personDao.add(client2);
 
-//    System.out.println(userDao);
+    System.out.println(personDao);
 //
-    userDao.save();
+    personDao.save();
 
 //    Optional<List<User>> users = userDao.load();
 
 //    users.get().forEach(System.out::println);
 
-    Loop loop = new Loop(new UserController(new ListUserService(new ListUserDao())));
+    Loop loop = new Loop(new UserController(new ListUserService(new ListPersonDao())));
 
-
-    try {
-      loop.run();
-
-    } catch (IOException e) {
-      System.out.println(e.getMessage());
-    }
+//    loop.run();
   }
 }

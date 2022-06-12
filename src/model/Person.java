@@ -3,11 +3,12 @@ package model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class User implements Serializable {
-  private String name;
-  private String password;
+public abstract class Person extends Id implements Serializable {
+  private final String name;
+  private final String password;
 
-  public User(String name, String password) {
+  public Person(String name, String password) {
+    super();
     this.name = name;
     this.password = password;
   }
@@ -23,6 +24,7 @@ public abstract class User implements Serializable {
   @Override
   public String toString() {
     return "User{" +
+        "id='" + this.getId() + '\'' +
         "name='" + name + '\'' +
         ", password='" + password + '\'' +
         '}';
@@ -31,13 +33,13 @@ public abstract class User implements Serializable {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (!(o instanceof User)) return false;
-    User user = (User) o;
-    return name.equals(user.name);
+    if (!(o instanceof Person person)) return false;
+
+    return this.getId().equals(person.getId());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(this.getId());
   }
 }

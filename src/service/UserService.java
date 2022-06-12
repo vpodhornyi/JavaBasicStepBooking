@@ -1,10 +1,10 @@
 package service;
 
-import model.User;
+import model.Person;
 
 public interface UserService {
 
-  void add(User user);
+  void add(Person user);
 
   void delete();
 }

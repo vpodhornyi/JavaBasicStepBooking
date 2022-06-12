@@ -1,6 +1,6 @@
 package model;
 
-public class Client extends User {
+public class Client extends Person {
   public Client(String name, String password) {
     super(name, password);
   }
@@ -9,7 +9,8 @@ public class Client extends User {
   @Override
   public String toString() {
     return "Client{" +
-        "name='" + this.getName() + '\'' +
+        "id='" + this.getId() + '\'' +
+        ", name='" + this.getName() + '\'' +
         ", password='" + this.getPassword() + '\'' +
         '}';
   }
@@ -17,8 +18,8 @@ public class Client extends User {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (!(o instanceof User)) return false;
-    Client client = (Client) o;
+    if (!(o instanceof Client client)) return false;
+
     return this.getName().equals(client.getName());
   }
 }
