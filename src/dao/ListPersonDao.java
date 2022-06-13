@@ -32,6 +32,13 @@ public class ListPersonDao implements PersonDao {
   }
 
   @Override
+  public Optional<Person> findByName(String name) {
+    return this.people.stream()
+        .filter(p -> p.getName().equals(name))
+        .findFirst();
+  }
+
+  @Override
   public void delete(Person person) {
 
   }

@@ -28,6 +28,10 @@ public class ListPersonService implements PersonService {
     return this.personDao.findById(id);
   }
 
+  public Optional<Person> findByName(String name) {
+    return this.personDao.findByName(name);
+  }
+
   public void delete(Person person) {
     this.personDao.delete(person);
   }

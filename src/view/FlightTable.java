@@ -1,22 +1,17 @@
 package view;
 
-import jdk.swing.interop.SwingInterOpUtils;
 import model.Flight;
+import helper.Helper;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class FlightTable {
-  private static String charRepeat(int length, char ch) {
-    return String.valueOf(ch).repeat(Math.max(0, length));
-  }
-
   public static void showFlights(List<Flight> flights) {
+
+
 
     HeaderFlightTable[] header = HeaderFlightTable.values();
 
@@ -50,13 +45,13 @@ public class FlightTable {
           String h = header[i].getName();
           int hln = h.length();
           int max = maxes.get(i);
-          return "| " + h + (hln > max ? "" : charRepeat((max - hln) + (i == 0 ? 0 : 2), ' ')) + " ";
+          return "| " + h + (hln > max ? "" : Helper.charRepeat((max - hln) + (i == 0 ? 0 : 2), ' ')) + " ";
         })
         .reduce("", (s1, s2) -> s1 + s2) + "|";
 
-    System.out.println(charRepeat(headerStr.length(), '*'));
+    System.out.println(Helper.charRepeat(headerStr.length(), '*'));
     System.out.println(headerStr);
-    System.out.println(charRepeat(headerStr.length(), '*'));
+    System.out.println(Helper.charRepeat(headerStr.length(), '*'));
 
     IntStream.range(0, flights.size()).forEach(i -> {
       Flight flight = flights.get(i);
@@ -64,36 +59,36 @@ public class FlightTable {
 
       str.append("| ")
           .append(i + 1)
-          .append(charRepeat(maxes.get(0) - String.valueOf(i + 1).length(), ' '));
+          .append(Helper.charRepeat(maxes.get(0) - String.valueOf(i + 1).length(), ' '));
 
       str.append(" |  ")
           .append(flight.getTime())
-          .append(charRepeat(maxes.get(1) - flight.getTime().length(), ' '));
+          .append(Helper.charRepeat(maxes.get(1) - flight.getTime().length(), ' '));
 
       str.append("  |  ")
           .append(flight.getFromCity().getName())
-          .append(charRepeat(maxes.get(2) - flight.getFromCity().getName().length(), ' '));
+          .append(Helper.charRepeat(maxes.get(2) - flight.getFromCity().getName().length(), ' '));
 
       str.append("  |  ")
           .append(flight.getToCity().getName())
-          .append(charRepeat(maxes.get(3) - flight.getToCity().getName().length(), ' '));
+          .append(Helper.charRepeat(maxes.get(3) - flight.getToCity().getName().length(), ' '));
 
       str.append("  |  ")
           .append(flight.getAirline().getName())
-          .append(charRepeat(maxes.get(4) - flight.getAirline().getName().length(), ' '));
+          .append(Helper.charRepeat(maxes.get(4) - flight.getAirline().getName().length(), ' '));
 
       str.append("  |  ")
           .append(flight.getAirplane().getName())
-          .append(charRepeat(maxes.get(5) - flight.getAirplane().getName().length(), ' '));
+          .append(Helper.charRepeat(maxes.get(5) - flight.getAirplane().getName().length(), ' '));
 
       str.append("  | ")
           .append(flight.getTickets().size())
-          .append(charRepeat((maxes.get(6) > header[6].getName().length() ? maxes.get(6) : header[6].getName().length())
+          .append(Helper.charRepeat((maxes.get(6) > header[6].getName().length() ? maxes.get(6) : header[6].getName().length())
               - String.valueOf(flight.getTickets().size()).length(), ' '));
 
       str.append(" | ")
           .append(flight.getTickets().size())
-          .append(charRepeat((maxes.get(7) > header[7].getName().length() ? maxes.get(7) : header[7].getName().length())
+          .append(Helper.charRepeat((maxes.get(7) > header[7].getName().length() ? maxes.get(7) : header[7].getName().length())
 
 
       - String.valueOf(flight.getTickets().size()).length(), ' '));
@@ -102,7 +97,7 @@ public class FlightTable {
 
       System.out.println(str);
 
-      System.out.println(charRepeat(headerStr.length(), '-'));
+      System.out.println(Helper.charRepeat(headerStr.length(), '-'));
     });
   }
 }
