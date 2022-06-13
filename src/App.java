@@ -7,15 +7,17 @@ import service.FlightService;
 import service.ListFlightService;
 import service.ListPersonService;
 import service.PersonService;
+import view.FlightTable;
 
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 
 public class App {
+
+
   public static void main(String[] args) {
 
-    // Person example
+/*    // Person example
 
     Person client1 = new Client("Viktor", "111");
 //    Person client2 = new Employee("Alex", "111");
@@ -38,10 +40,10 @@ public class App {
 
     Flight flight = new Flight(City.Barcelona, City.Berlin, Airline.AlaskaAirlines, Airplane.AIRBUS_A310, new Date());
 
-    Ticket ticket1 = new BaseTicket(100.00, flight);
-    Ticket ticket2 = new BaseTicket(110.00, flight);
-    Ticket ticket3 = new BaseTicket(90.00, flight);
-    Ticket ticket4 = new BaseTicket(40.00, flight);
+    Ticket ticket1 = new BaseTicket(flight);
+    Ticket ticket2 = new BaseTicket(flight);
+    Ticket ticket3 = new BaseTicket(flight);
+    Ticket ticket4 = new BaseTicket(flight);
 
 //    System.out.println(flight);
 
@@ -78,6 +80,17 @@ public class App {
       }
       System.out.println(person);
     }
+*/
+
+    Generator generator = new Generator();
+
+    List<Flight> flights = generator.generateFlights(1001, 100);
+
+//    flights.forEach(System.out::println);
+
+    FlightTable.showFlights(flights);
 
   }
+
+
 }

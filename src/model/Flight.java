@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Optional;
@@ -10,10 +11,10 @@ public class Flight extends Id {
   City toCity;
   Airline airline;
   Airplane airplane;
-  Date time;
+  long time;
   Set<Ticket> tickets;
 
-  public Flight(City fromCity, City toCity, Airline airline, Airplane airplane, Date time) {
+  public Flight(City fromCity, City toCity, Airline airline, Airplane airplane, long time) {
     super();
     this.fromCity = fromCity;
     this.toCity = toCity;
@@ -23,8 +24,36 @@ public class Flight extends Id {
     this.tickets = new HashSet<>();
   }
 
+  public void setTickets(Set<Ticket> tickets) {
+    this.tickets = tickets;
+  }
+
   public void addTicket(Ticket ticket) {
     this.tickets.add(ticket);
+  }
+
+  public Airplane getAirplane() {
+    return airplane;
+  }
+
+  public City getFromCity() {
+    return fromCity;
+  }
+
+  public City getToCity() {
+    return toCity;
+  }
+
+  public Airline getAirline() {
+    return airline;
+  }
+
+  public String getTime() {
+    return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date(this.time));
+  }
+
+  public Set<Ticket> getTickets() {
+    return new HashSet<>(this.tickets);
   }
 
   public Optional<Ticket> getFreeTicket() {
@@ -32,6 +61,11 @@ public class Flight extends Id {
         .filter(Ticket::isNotBooking)
         .findFirst();
   }
+
+  public int getCountOfFreeTickets() {
+    return this.tickets.size();
+  }
+
 
   @Override
   public String toString() {
