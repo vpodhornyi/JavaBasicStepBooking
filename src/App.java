@@ -8,16 +8,20 @@ import model.*;
 import service.FlightService;
 import service.ListFlightService;
 import service.ListPersonService;
+import view.MenuView;
 
 import java.util.*;
 
 
 public class App {
+
+  private final Scanner scanner;
   private final FlightController flightController;
   private final PersonController personController;
 
-  public App() {
 
+  public App() {
+    this.scanner = new Scanner(System.in);
     this.flightController = new FlightController(new ListFlightService(new ListFlightDao()));
     ListPersonDao listPersonDao = new ListPersonDao();
     ListPersonService listPersonService = new ListPersonService(listPersonDao);
@@ -39,10 +43,16 @@ public class App {
   public void run() {
 
     while (true) {
-      Optional<Person> optionalPerson = this.personController.login();
+      int menuNumber = MenuView.loginMenu(this.scanner);
 
-      optionalPerson.ifPresent(this::session);
+      switch (menuNumber) {
+        case 1:
+          Optional<Person> optionalPerson = this.personController.login();
+          optionalPerson.ifPresent(this::session);
+          break;
+        case 2:
+          break;
+      }
     }
-
   }
 }

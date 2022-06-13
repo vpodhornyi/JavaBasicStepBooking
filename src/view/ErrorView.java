@@ -18,4 +18,9 @@ public class ErrorView {
   public static void passwordError() {
     printBorder("Password is not correct");
   }
+
+  public static void menuNumberError() {
+    printBorder("Menu number is not correct");
+  }
+
 }
