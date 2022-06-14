@@ -4,7 +4,7 @@ import exception.NameException;
 import exception.PasswordException;
 import model.Person;
 import service.PersonService;
-import view.PersonView;
+import view.ConsoleView;
 
 import java.util.List;
 import java.util.Map;
@@ -27,39 +27,34 @@ public class PersonController {
     personService.add(null);
   }
 
-  public void clientBooking() {
+  public void bookingForHimself() {
 
     personService.booking(null, null);
   }
 
-  public void employeeBooking() {
+  public void bookingForOtherPerson() {
 
     personService.booking(null, null, null);
   }
 
   public void printAllPersons() {
-
     Optional<List<Person>> optionalFlight = personService.findAll();
   }
 
   public Person login() throws NameException, PasswordException {
-    Map<String, String> loginData = PersonView.login(this.scanner);
+//    Map<String, String> loginData = ConsoleView.login(this.scanner);
 
-    Optional<Person> optionalPerson = this.personService.findByName(loginData.get("name"));
+    Optional<Person> optionalPerson = this.personService.findByName("root");
 
     if (optionalPerson.isPresent()) {
       Person person = optionalPerson.get();
       String password = person.getPassword();
 
-      if (password.equals(loginData.get("password"))) {
-        return person;
+      if (password.equals("root")) return person;
 
-      } else {
-        throw new PasswordException();
-      }
-
-    } else {
-      throw new NameException();
+      throw new PasswordException();
     }
+
+    throw new NameException();
   }
 }

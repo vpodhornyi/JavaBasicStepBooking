@@ -1,7 +1,8 @@
 package view;
 
 public enum HeaderFlightTable {
-  ID("№"),
+  NUMBER("№"),
+  ID("ID"),
   DATE("Date"),
   CITY_FROM("From"),
   CITY_TO("To"),

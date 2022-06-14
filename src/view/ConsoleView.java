@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class PersonView {
+public class ConsoleView {
 
   public static Map<String, String> login(Scanner scanner) {
     Map<String, String> data = new HashMap<>();
@@ -19,4 +19,8 @@ public class PersonView {
     return data;
   }
 
+  public static String string(Scanner scanner, String str) {
+    System.out.print(str);
+    return scanner.nextLine();
+  }
 }

@@ -62,8 +62,11 @@ public class Flight extends Id {
         .findFirst();
   }
 
-  public int getCountOfFreeTickets() {
-    return this.tickets.size();
+  public long getCountOfFreeTickets() {
+
+    return this.tickets.stream()
+        .filter(Ticket::isNotBooking)
+        .count();
   }
 
 
