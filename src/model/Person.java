@@ -48,6 +48,10 @@ public abstract class Person extends Id implements Serializable {
     this.tickets.remove(ticket);
   }
 
+  public String getWelcomeString() {
+    return "Hello, " + this.name + "(" + this.getClass().getSimpleName() + ")";
+  }
+
   @Override
   public String toString() {
     return "Person{" +

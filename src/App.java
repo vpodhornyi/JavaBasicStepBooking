@@ -39,7 +39,7 @@ public class App {
   private void session(Person person) {
     while (true) {
       try {
-        int menuNumber = MenuView.mainMenu(this.scanner);
+        int menuNumber = MenuView.mainMenu(this.scanner, person);
         switch (menuNumber) {
           case 1:
             List<Flight> flights = this.generator.generateFlights(100, 120);
@@ -48,6 +48,7 @@ public class App {
           case 2:
             this.flightController.printAllFlights();
             break;
+          case 5:
           default:
             return;
         }
