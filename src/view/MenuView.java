@@ -34,8 +34,9 @@ public class MenuView {
         "(2) Show flights, " +
         "(3) Create Client, " +
         "(4) Delete Client, " +
-        "(5) Booking flight, " +
-        "(6) Logout");
+        "(5) Show Clients, " +
+        "(6) Booking flight, " +
+        "(7) Logout");
     return Helper.getNumberFromConsole("Enter menu number: ", 6, scanner);
   }
 }

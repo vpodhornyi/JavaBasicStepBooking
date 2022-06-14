@@ -73,9 +73,12 @@ public class App {
             this.personController.deletePerson(this.scanner);
             break;
           case 5:
-            this.booking();
+            this.personController.printAllPersons();
             break;
           case 6:
+            this.booking();
+            break;
+          case 7:
             return;
         }
       } catch (NumberException | EmptyException | PersonNameException | NameException e) {

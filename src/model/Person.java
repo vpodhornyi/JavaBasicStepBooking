@@ -8,6 +8,7 @@ import java.util.Set;
 public abstract class Person extends Id implements Serializable {
   private final String name;
   private final String password;
+  private final Double account = 500.00;
 
   private final Set<Ticket> tickets;
 
@@ -24,6 +25,10 @@ public abstract class Person extends Id implements Serializable {
 
   public String getPassword() {
     return password;
+  }
+
+  public Double getAccount() {
+    return account;
   }
 
   public Set<Ticket> getTickets() {
@@ -44,8 +49,12 @@ public abstract class Person extends Id implements Serializable {
     ticket.setOwner(person);
   }
 
-  public void removeBooking(Ticket ticket){
+  public void removeBooking(Ticket ticket) {
     this.tickets.remove(ticket);
+  }
+
+  public String getRole() {
+    return this.getClass().getSimpleName();
   }
 
   public String getWelcomeString() {
@@ -53,10 +62,12 @@ public abstract class Person extends Id implements Serializable {
     str.append("Hello, ");
     str.append(this.name);
     str.append("(");
-    str.append(this.getClass().getSimpleName());
+    str.append(this.getRole());
     str.append("); ");
     str.append("Ticket(s) = ");
     str.append(this.tickets.size());
+    str.append("; Balance = ");
+    str.append(this.account);
 
     return str.toString();
   }

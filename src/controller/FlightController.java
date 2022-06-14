@@ -8,7 +8,7 @@ import model.Person;
 import model.Ticket;
 import service.FlightService;
 import view.ConsoleView;
-import view.FlightTable;
+import view.Table;
 
 import java.util.List;
 import java.util.Map;
@@ -21,22 +21,6 @@ public class FlightController {
 
   public FlightController(FlightService flightService) {
     this.flightService = flightService;
-  }
-
-  public void createFlight() {
-
-    flightService.add(null);
-  }
-
-  public void deleteFlight() {
-
-    flightService.delete(null);
-  }
-
-  public Flight getFlightById(Scanner scanner) {
-    Map<String, String > data = ConsoleView.getFlightId(scanner);
-
-    return this.flightService.findById(data);
   }
 
   public void bookingTicketForHimself(Scanner scanner, Person person) throws FlightException {
@@ -54,7 +38,6 @@ public class FlightController {
   }
 
   public void printAllFlights() {
-
     Optional<List<Flight>> optionalFlights = flightService.findAll();
 
     if (optionalFlights.isPresent()) {
@@ -62,7 +45,7 @@ public class FlightController {
       List<Flight> flights = optionalFlights.get();
 
       if (flights.size() != 0) {
-        FlightTable.showFlights(flights);
+        Table.showFlights(flights);
         return;
       }
 

@@ -1,12 +1,15 @@
 package controller;
 
+import exception.EmptyException;
 import exception.NameException;
 import exception.PasswordException;
 import exception.PersonNameException;
 import model.Client;
+import model.Flight;
 import model.Person;
 import service.PersonService;
 import view.ConsoleView;
+import view.Table;
 
 import java.util.List;
 import java.util.Map;
@@ -43,7 +46,19 @@ public class PersonController {
   }
 
   public void printAllPersons() {
-    Optional<List<Person>> optionalFlight = personService.findAll();
+    Optional<List<Person>> optionalPeople = personService.findAll();
+
+    if (optionalPeople.isPresent()) {
+
+      List<Person> people = optionalPeople.get();
+
+      if (people.size() != 0) {
+        Table.showPeople(people);
+        return;
+      }
+
+      throw new EmptyException();
+    }
   }
 
   public Person login(Scanner scanner) {
