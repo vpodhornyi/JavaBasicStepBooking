@@ -40,7 +40,7 @@ public class PersonController {
 
   public void printAllPersons() {
 
-    List<Person> optionalFlight = personService.findAll();
+    Optional<List<Person>> optionalFlight = personService.findAll();
   }
 
   public Optional<Person> login() {

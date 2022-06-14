@@ -19,7 +19,7 @@ public class ListPersonService implements PersonService {
     personDao.add(person);
   }
 
-  public List<Person> findAll() {
+  public Optional<List<Person>> findAll() {
     return this.personDao.findAll();
   }
 

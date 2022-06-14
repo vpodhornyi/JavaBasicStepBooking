@@ -20,7 +20,7 @@ public class ListFlightService implements FlightService {
   }
 
   @Override
-  public List<Flight> findAll() {
+  public Optional<List<Flight>> findAll() {
     return this.flightDao.findAll();
   }
 
@@ -35,6 +35,10 @@ public class ListFlightService implements FlightService {
 
   public Ticket getFreeTicket(){
     return null;
+  }
+
+  public void setFlights(List<Flight> flights){
+    this.flightDao.setFlights(flights);
   }
 
   public void save(){

@@ -21,8 +21,8 @@ public class ListFlightDao implements FlightDao {
   }
 
   @Override
-  public List<Flight> findAll() {
-    return new ArrayList<>(this.flights);
+  public Optional<List<Flight>> findAll() {
+    return Optional.of(new ArrayList<>(this.flights));
   }
 
   @Override
@@ -35,6 +35,11 @@ public class ListFlightDao implements FlightDao {
   @Override
   public void delete(Flight flight) {
     this.flights.remove(flight);
+  }
+
+  @Override
+  public void setFlights(List<Flight> flights) {
+    this.flights = flights;
   }
 
   public void save() {

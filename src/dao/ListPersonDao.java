@@ -20,8 +20,8 @@ public class ListPersonDao implements PersonDao {
   }
 
   @Override
-  public List<Person> findAll() {
-    return new ArrayList<>(this.people);
+  public Optional<List<Person>> findAll() {
+    return  Optional.of(new ArrayList<>(this.people));
   }
 
   @Override

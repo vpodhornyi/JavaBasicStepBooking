@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 public class FlightTable {
   public static void showFlights(List<Flight> flights) {
 
-
+    if (flights.size() == 0) return;
 
     HeaderFlightTable[] header = HeaderFlightTable.values();
 
@@ -91,7 +91,7 @@ public class FlightTable {
           .append(Helper.charRepeat((maxes.get(7) > header[7].getName().length() ? maxes.get(7) : header[7].getName().length())
 
 
-      - String.valueOf(flight.getTickets().size()).length(), ' '));
+              - String.valueOf(flight.getTickets().size()).length(), ' '));
 
       str.append(" |");
 

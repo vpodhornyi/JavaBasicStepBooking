@@ -19,8 +19,13 @@ public class ErrorView {
     printBorder("Password is not correct");
   }
 
-  public static void menuNumberError() {
-    printBorder("Menu number is not correct");
+  public static void numberError() {
+    printBorder("Number is not correct");
   }
+  public static void emptyFlightDataBAseError() {
+    printBorder("Flights data base is empty");
+  }
+
+
 
 }

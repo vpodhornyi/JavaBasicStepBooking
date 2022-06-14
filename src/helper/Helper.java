@@ -10,11 +10,12 @@ public class Helper {
     return String.valueOf(ch).repeat(Math.max(0, length));
   }
 
-  private int getNumberFromConsole(String str, int max, Scanner scanner) {
+  public static int getNumberFromConsole(String str, int max, Scanner scanner) {
     System.out.print(str);
     int n;
     while ((n = scanner.hasNextInt() ? scanner.nextInt() : -1) == -1 || n < 1 || n > max) {
-      ErrorView.menuNumberError();
+      ErrorView.numberError();
+      System.out.print("Try again: ");
       scanner.nextLine();
     }
     return n;

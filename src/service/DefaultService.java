@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface DefaultService<T> {
   void add(T obj);
 
-  List<T> findAll();
+  Optional<List<T>> findAll();
 
   Optional<T> findById(String id);
 
