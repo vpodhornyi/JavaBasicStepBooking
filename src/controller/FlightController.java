@@ -11,6 +11,7 @@ import view.ConsoleView;
 import view.FlightTable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -32,29 +33,20 @@ public class FlightController {
     flightService.delete(null);
   }
 
-  public Flight getFlightById(Scanner scanner) throws FlightException {
-    String id = ConsoleView.string(scanner, "Enter flight id :");
-    Optional<Flight> optionalFlight = this.flightService.findById(id);
+  public Flight getFlightById(Scanner scanner) {
+    Map<String, String > data = ConsoleView.getFlightId(scanner);
 
-    if (optionalFlight.isPresent()) return optionalFlight.get();
-
-    throw new FlightException();
+    return this.flightService.findById(data);
   }
 
-  public Ticket getTicketByFlightId(Scanner scanner) throws FlightException {
-    String id = ConsoleView.string(scanner, "Enter flight id :");
-    Optional<Flight> optionalFlight = this.flightService.findById(id);
+  public void bookingTicketForHimself(Scanner scanner, Person person) throws FlightException {
+    Map<String, String > data = ConsoleView.getFlightId(scanner);
+    this.flightService.bookingTicket(data, person);
+  }
 
-    if (optionalFlight.isPresent()) {
-      Flight flight = optionalFlight.get();
-
-      Optional<Ticket> optionalTicket = flight.getFreeTicket();
-
-      if (optionalTicket.isPresent()) return optionalTicket.get();
-
-      throw new FreeTicketException();
-    }
-    throw new FlightException();
+  public void bookingTicketForClient(Scanner scanner) throws FlightException {
+    Map<String, String > data = ConsoleView.getFlightIdClientName(scanner);
+    this.flightService.bookingTicket(data);
   }
 
   public void generateDataFLights(Person person, List<Flight> flights) {

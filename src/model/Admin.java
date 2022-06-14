@@ -1,13 +1,9 @@
 package model;
 
-public class Admin extends Employee{
+public class Admin extends Client{
 
   public Admin(String name, String password) {
     super(name, password);
-  }
-
-  public Employee createEmployee(String name, String password) {
-    return new Employee(name, password);
   }
 
   @Override

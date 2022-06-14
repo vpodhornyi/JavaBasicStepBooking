@@ -49,7 +49,16 @@ public abstract class Person extends Id implements Serializable {
   }
 
   public String getWelcomeString() {
-    return "Hello, " + this.name + "(" + this.getClass().getSimpleName() + ")";
+    StringBuilder str = new StringBuilder();
+    str.append("Hello, ");
+    str.append(this.name);
+    str.append("(");
+    str.append(this.getClass().getSimpleName());
+    str.append("); ");
+    str.append("Ticket(s) = ");
+    str.append(this.tickets.size());
+
+    return str.toString();
   }
 
   @Override

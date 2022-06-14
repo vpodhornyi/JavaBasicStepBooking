@@ -39,7 +39,7 @@ public class PersonController {
 
   public void bookingForOtherPerson() {
 
-    personService.booking(null, null, null);
+    personService.booking(null, null);
   }
 
   public void printAllPersons() {

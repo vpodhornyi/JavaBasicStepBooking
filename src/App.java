@@ -22,8 +22,8 @@ public class App {
 
   public App() {
     this.scanner = new Scanner(System.in);
-    this.flightController = new FlightController(new ListFlightService(new ListFlightDao()));
     ListPersonDao listPersonDao = new ListPersonDao();
+    this.flightController = new FlightController(new ListFlightService(new ListFlightDao(), listPersonDao));
     ListPersonService listPersonService = new ListPersonService(listPersonDao);
     this.personController = new PersonController(listPersonService);
     this.generator = new Generator();
@@ -39,18 +39,16 @@ public class App {
 
         switch (menuNumber) {
           case 1:
-            Ticket ticket = this.flightController.getTicketByFlightId(this.scanner);
-            this.person.booking(ticket);
-
-            break;
+            this.flightController.bookingTicketForHimself(this.scanner, this.person);
+             break;
           case 2:
-
+            this.flightController.bookingTicketForClient(this.scanner);
             break;
           case 3:
             return;
           default:
         }
-      } catch (NumberException | FlightException e) {
+      } catch (NumberException | FlightException | FreeTicketException | PersonNotExistException e) {
         Helper.printBorder(e.getMessage(), '*');
       }
     }

@@ -1,11 +1,12 @@
 package service;
 
 import dao.PersonDao;
+import exception.FlightException;
 import exception.NameException;
 import exception.PasswordException;
 import exception.PersonNameException;
 import model.Client;
-import model.Employee;
+import model.Flight;
 import model.Person;
 import model.Ticket;
 
@@ -15,8 +16,6 @@ import java.util.Optional;
 import java.util.Set;
 
 public class ListPersonService implements PersonService {
-  private final String FIELD_NAME = "name";
-  private final String FIELD_PASSWORD = "password";
   private final PersonDao personDao;
 
   public ListPersonService(PersonDao uerDao) {
@@ -54,9 +53,12 @@ public class ListPersonService implements PersonService {
   }
 
   @Override
-  public Optional<Person> findById(String id) {
+  public Person findById(Map<String, String> data) {
+    Optional<Person> optionalPerson = this.personDao.findById(data.get(FIELD_ID));
 
-    return this.personDao.findById(id);
+    if (optionalPerson.isPresent()) return optionalPerson.get();
+
+    throw new PersonNameException();
   }
 
   @Override
@@ -75,18 +77,17 @@ public class ListPersonService implements PersonService {
     throw new NameException();
   }
 
-  public Optional<Person> findByName(String name) {
-    return this.personDao.findByName(name);
+  public Person findByName(Map<String, String> data) {
+    Optional<Person> optionalPerson = this.personDao.findByName(data.get(FIELD_NAME));
+
+    if (optionalPerson.isPresent()) return optionalPerson.get();
+
+    throw new PersonNameException();
   }
 
   @Override
   public void booking(Person person, Ticket ticket) {
     person.booking(ticket);
-  }
-
-  @Override
-  public void booking(Employee employee, Person person, Ticket ticket) {
-    employee.booking(person, ticket);
   }
 
   public void save() {
