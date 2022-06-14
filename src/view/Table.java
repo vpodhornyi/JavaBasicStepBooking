@@ -37,11 +37,17 @@ public class Table {
         .max(Comparator.comparingInt(f -> f.getAirplane().getName().length()))
         .get().getAirplane().getName().length());
     maxes.add(String.valueOf(flights.stream()
-        .max(Comparator.comparingInt(f -> String.valueOf(f.getCountOfFreeTickets()).length()))
-        .get().getCountOfFreeTickets()).length());
+        .max(Comparator.comparingInt(f -> String.valueOf(f.getCountOfFreeBaseTickets()).length()))
+        .get().getCountOfFreeBaseTickets()).length());
     maxes.add(String.valueOf(flights.stream()
-        .max(Comparator.comparingInt(f -> String.valueOf(f.getCountOfFreeTickets()).length()))
-        .get().getCountOfFreeTickets()).length());
+        .max(Comparator.comparingInt(f -> String.valueOf(f.getFreeBaseTicketCost()).length()))
+        .get().getFreeBaseTicketCost()).length());
+    maxes.add(String.valueOf(flights.stream()
+        .max(Comparator.comparingInt(f -> String.valueOf(f.getCountOfFreeBusinessTickets()).length()))
+        .get().getCountOfFreeBusinessTickets()).length());
+    maxes.add(String.valueOf(flights.stream()
+        .max(Comparator.comparingInt(f -> String.valueOf(f.getFreeBusinessTicketCost()).length()))
+        .get().getFreeBusinessTicketCost()).length());
 
    List<Integer>headerLn =  new ArrayList<>();
 
@@ -96,12 +102,20 @@ public class Table {
           .append(Helper.charRepeat(headerLn.get(6) - flight.getAirplane().getName().length(), ' '));
 
       str.append(separator)
-          .append(flight.getCountOfFreeTickets())
-          .append(Helper.charRepeat(headerLn.get(7) - String.valueOf(flight.getCountOfFreeTickets()).length(), ' '));
+          .append(flight.getCountOfFreeBaseTickets())
+          .append(Helper.charRepeat(headerLn.get(7) - String.valueOf(flight.getCountOfFreeBaseTickets()).length(), ' '));
 
       str.append(separator)
-          .append(flight.getCountOfFreeTickets())
-          .append(Helper.charRepeat(headerLn.get(8) - String.valueOf(flight.getCountOfFreeTickets()).length(), ' '));
+          .append(flight.getFreeBaseTicketCost())
+          .append(Helper.charRepeat(headerLn.get(8) - String.valueOf(flight.getFreeBaseTicketCost()).length(), ' '));
+
+      str.append(separator)
+          .append(flight.getCountOfFreeBusinessTickets())
+          .append(Helper.charRepeat(headerLn.get(9) - String.valueOf(flight.getCountOfFreeBusinessTickets()).length(), ' '));
+
+      str.append(separator)
+          .append(flight.getFreeBusinessTicketCost())
+          .append(Helper.charRepeat(headerLn.get(10) - String.valueOf(flight.getFreeBusinessTicketCost()).length(), ' '));
 
       str.append(" |");
 

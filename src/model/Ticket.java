@@ -6,9 +6,12 @@ import java.util.Optional;
 public abstract class Ticket extends Id implements Serializable {
   private Person owner = null;
   private final Flight flight;
+  private final Double cost;
 
-  public Ticket(Flight flight) {
+  public Ticket(Flight flight, Double cost) {
     this.flight = flight;
+    int costPercent = flight.getAirline().getCostPercent();
+    this.cost = cost + ((cost * costPercent) / 100);
     this.flight.addTicket(this);
   }
 
@@ -34,6 +37,19 @@ public abstract class Ticket extends Id implements Serializable {
 
   public Flight getFlight() {
     return this.flight;
+  }
+
+
+  public Double getCost() {
+    return cost;
+  }
+
+  public boolean isBase() {
+    return false;
+  }
+
+  public boolean isBusiness() {
+    return false;
   }
 
   @Override

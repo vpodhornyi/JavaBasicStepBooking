@@ -5,6 +5,9 @@ public class Client extends Person {
     super(name, password);
   }
 
+  public boolean isClient(){
+    return true;
+  }
 
   @Override
   public String toString() {

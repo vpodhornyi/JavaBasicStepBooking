@@ -6,6 +6,9 @@ public class Admin extends Client{
     super(name, password);
   }
 
+  public boolean isAdmin(){
+    return true;
+  }
   @Override
   public String toString() {
     return "Admin{" +

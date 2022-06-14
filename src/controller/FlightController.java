@@ -25,6 +25,7 @@ public class FlightController {
 
   public void bookingTicketForHimself(Scanner scanner, Person person) throws FlightException {
     Map<String, String > data = ConsoleView.getFlightId(scanner);
+
     this.flightService.bookingTicket(data, person);
   }
 

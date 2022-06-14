@@ -60,7 +60,7 @@ public class ListFlightService implements FlightService {
     if (optionalFlight.isPresent()) {
       Flight flight = optionalFlight.get();
 
-      Optional<Ticket> optionalTicket = flight.getFreeTicket();
+      Optional<Ticket> optionalTicket = flight.getFreeBaseTicket();
 
       if (optionalTicket.isPresent()) {
         Ticket ticket = optionalTicket.get();
@@ -81,7 +81,7 @@ public class ListFlightService implements FlightService {
     if (optionalFlight.isPresent()) {
       Flight flight = optionalFlight.get();
 
-      Optional<Ticket> optionalTicket = flight.getFreeTicket();
+      Optional<Ticket> optionalTicket = flight.getFreeBaseTicket();
 
       if (optionalTicket.isPresent()) {
         if (optionalPerson.isPresent()) {

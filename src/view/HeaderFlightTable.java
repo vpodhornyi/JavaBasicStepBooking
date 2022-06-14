@@ -9,7 +9,9 @@ public enum HeaderFlightTable {
   AIRLINE("Airline"),
   AIRPLANE("Airplane"),
   FREE_BASE_TICKETS("Free base tickets"),
-  FREE_BUSINESS_TICKETS("Free business tickets");
+  BASE_COST("Cost"),
+  FREE_BUSINESS_TICKETS("Free business tickets"),
+  BUSINESS_COST("Cost");
 
   private final String name;
 

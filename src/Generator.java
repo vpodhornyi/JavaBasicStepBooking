@@ -7,12 +7,17 @@ import java.util.concurrent.TimeUnit;
 public class Generator {
   private Set<Ticket> generateTickets(Flight flight) {
     Airplane airplane = flight.getAirplane();
-    int seats = airplane.getSeats();
+    int baseSeats = airplane.getBaseSeats();
+    int businessSeats = airplane.getBusinessSeats();
 
     Set<Ticket> tickets = new HashSet<>();
 
-    for (int i = 0; i < seats; i++) {
+    for (int i = 0; i < baseSeats; i++) {
       tickets.add(new BaseTicket(flight));
+    }
+
+    for (int i = 0; i < businessSeats; i++) {
+      tickets.add(new BusinessTicket(flight));
     }
 
     return tickets;

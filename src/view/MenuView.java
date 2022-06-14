@@ -28,6 +28,12 @@ public class MenuView {
     return Helper.getNumberFromConsole("Enter menu number: ", 3, scanner);
   }
 
+  public static int ticketChoose(Scanner scanner) {
+    printBorder("", "(1) Base, (2) Business, (3) Cansel");
+
+    return Helper.getNumberFromConsole("Enter ticket number: ", 3, scanner);
+  }
+
   public static int mainMenu(Scanner scanner, Person person) {
     printBorder(person.getWelcomeString() + " | ", "" +
         "(1) Generate data, " +
@@ -37,6 +43,6 @@ public class MenuView {
         "(5) Show Clients, " +
         "(6) Booking flight, " +
         "(7) Logout");
-    return Helper.getNumberFromConsole("Enter menu number: ", 6, scanner);
+    return Helper.getNumberFromConsole("Enter menu number: ", 7, scanner);
   }
 }

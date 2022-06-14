@@ -56,15 +56,49 @@ public class Flight extends Id {
     return new HashSet<>(this.tickets);
   }
 
-  public Optional<Ticket> getFreeTicket() {
+  public Optional<Ticket> getFreeBaseTicket() {
     return this.tickets.stream()
         .filter(Ticket::isNotBooking)
+        .filter(Ticket::isBase)
         .findFirst();
   }
 
-  public long getCountOfFreeTickets() {
+  public Double getFreeBaseTicketCost() {
+    Optional<Ticket> optionalTicket = this.tickets.stream()
+        .filter(Ticket::isNotBooking)
+        .filter(Ticket::isBase)
+        .findFirst();
+
+    return optionalTicket.isPresent() ? optionalTicket.get().getCost() : 0.0;
+  }
+
+  public Optional<Ticket> getFreeBusinessTicket() {
     return this.tickets.stream()
         .filter(Ticket::isNotBooking)
+        .filter(Ticket::isBusiness)
+        .findFirst();
+  }
+
+  public Double getFreeBusinessTicketCost() {
+    Optional<Ticket> optionalTicket = this.tickets.stream()
+        .filter(Ticket::isNotBooking)
+        .filter(Ticket::isBusiness)
+        .findFirst();
+
+    return optionalTicket.isPresent() ? optionalTicket.get().getCost() : 0.0;
+  }
+
+  public long getCountOfFreeBaseTickets() {
+    return this.tickets.stream()
+        .filter(Ticket::isNotBooking)
+        .filter(Ticket::isBase)
+        .count();
+  }
+
+  public long getCountOfFreeBusinessTickets() {
+    return this.tickets.stream()
+        .filter(Ticket::isNotBooking)
+        .filter(Ticket::isBusiness)
         .count();
   }
 

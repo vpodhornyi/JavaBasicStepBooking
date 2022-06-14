@@ -8,7 +8,7 @@ import java.util.Set;
 public abstract class Person extends Id implements Serializable {
   private final String name;
   private final String password;
-  private final Double account = 500.00;
+  private final Double account = 500.0;
 
   private final Set<Ticket> tickets;
 
@@ -51,6 +51,14 @@ public abstract class Person extends Id implements Serializable {
 
   public void removeBooking(Ticket ticket) {
     this.tickets.remove(ticket);
+  }
+
+  public boolean isClient(){
+    return false;
+  }
+
+  public boolean isAdmin(){
+    return false;
   }
 
   public String getRole() {
