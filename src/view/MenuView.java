@@ -1,5 +1,6 @@
 package view;
 
+import exception.NumberException;
 import helper.Helper;
 
 import java.util.Scanner;

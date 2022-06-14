@@ -1,6 +1,6 @@
 package helper;
 
-import view.ErrorView;
+import exception.NumberException;
 
 import java.util.Scanner;
 
@@ -12,12 +12,26 @@ public class Helper {
 
   public static int getNumberFromConsole(String str, int max, Scanner scanner) {
     System.out.print(str);
+    String line = scanner.nextLine();
     int n;
-    while ((n = scanner.hasNextInt() ? scanner.nextInt() : -1) == -1 || n < 1 || n > max) {
-      ErrorView.numberError();
-      System.out.print("Try again: ");
-      scanner.nextLine();
+
+    try {
+      n = Integer.parseInt(line);
+
+    } catch (RuntimeException e) {
+      throw new NumberException();
     }
+
+    if (n < 1 || n > max) throw new NumberException();
+
     return n;
+  }
+
+  public static void printBorder(String str, Character ch) {
+    int ln = str.length() + 4;
+
+    System.out.println(charRepeat(ln, ch));
+    System.out.println("- " + str + " -");
+    System.out.println(charRepeat(ln, ch));
   }
 }

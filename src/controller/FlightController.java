@@ -1,9 +1,9 @@
 package controller;
 
+import exception.EmptyException;
 import model.Flight;
 import model.Person;
 import service.FlightService;
-import view.ErrorView;
 import view.FlightTable;
 
 import java.util.List;
@@ -42,7 +42,7 @@ public class FlightController {
       if (flights.size() != 0) {
         FlightTable.showFlights(flights);
       } else {
-        ErrorView.emptyFlightDataBAseError();
+        throw new EmptyException();
       }
     }
   }

@@ -1,10 +1,9 @@
 package controller;
 
-import model.Employee;
+import exception.NameException;
+import exception.PasswordException;
 import model.Person;
-import model.Ticket;
 import service.PersonService;
-import view.ErrorView;
 import view.PersonView;
 
 import java.util.List;
@@ -43,7 +42,7 @@ public class PersonController {
     Optional<List<Person>> optionalFlight = personService.findAll();
   }
 
-  public Optional<Person> login() {
+  public Person login() throws NameException, PasswordException {
     Map<String, String> loginData = PersonView.login(this.scanner);
 
     Optional<Person> optionalPerson = this.personService.findByName(loginData.get("name"));
@@ -53,16 +52,14 @@ public class PersonController {
       String password = person.getPassword();
 
       if (password.equals(loginData.get("password"))) {
-        return optionalPerson;
+        return person;
 
       } else {
-        ErrorView.passwordError();
+        throw new PasswordException();
       }
 
     } else {
-      ErrorView.nameError();
+      throw new NameException();
     }
-
-    return Optional.empty();
   }
 }
