@@ -21,6 +21,6 @@ public class Client extends Person {
     if (this == o) return true;
     if (!(o instanceof Client client)) return false;
 
-    return this.getId().equals(client.getId());
+    return this.getName().equals(client.getName());
   }
 }

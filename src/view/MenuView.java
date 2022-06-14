@@ -23,13 +23,19 @@ public class MenuView {
   }
 
   public static int bookingChoose(Scanner scanner) {
-    printBorder("", "(1) For himself, (2) For other person, (3) Cansel");
+    printBorder("", "(1) For himself, (2) For Client, (3) Cansel");
 
     return Helper.getNumberFromConsole("Enter menu number: ", 3, scanner);
   }
 
   public static int mainMenu(Scanner scanner, Person person) {
-    printBorder(person.getWelcomeString() + " | ", "(1) Generate data, (2) Show flights, (3) Create person, (4) Booking flight, (5) Logout");
-    return Helper.getNumberFromConsole("Enter menu number: ", 5, scanner);
+    printBorder(person.getWelcomeString() + " | ", "" +
+        "(1) Generate data, " +
+        "(2) Show flights, " +
+        "(3) Create Client, " +
+        "(4) Delete Client, " +
+        "(5) Booking flight, " +
+        "(6) Logout");
+    return Helper.getNumberFromConsole("Enter menu number: ", 6, scanner);
   }
 }

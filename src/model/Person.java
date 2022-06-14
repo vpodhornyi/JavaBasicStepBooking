@@ -62,14 +62,6 @@ public abstract class Person extends Id implements Serializable {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Person person)) return false;
-
-    return this.getId().equals(person.getId());
-  }
-
-  @Override
   public int hashCode() {
     return Objects.hash(this.getId());
   }

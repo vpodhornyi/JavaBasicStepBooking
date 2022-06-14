@@ -21,7 +21,7 @@ public class ListPersonDao implements PersonDao {
 
   @Override
   public Optional<List<Person>> findAll() {
-    return  Optional.of(new ArrayList<>(this.people));
+    return Optional.of(new ArrayList<>(this.people));
   }
 
   @Override
@@ -40,7 +40,7 @@ public class ListPersonDao implements PersonDao {
 
   @Override
   public void delete(Person person) {
-
+    this.people.remove(person);
   }
 
   public void save() {

@@ -5,6 +5,7 @@ import model.Flight;
 import model.Ticket;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class ListFlightService implements FlightService {
@@ -15,8 +16,9 @@ public class ListFlightService implements FlightService {
     this.flightDao = flightDao;
   }
 
-  public void add(Flight flight) {
-    this.flightDao.add(flight);
+  public void add(Map<String, String> data) {
+
+    this.flightDao.add(null);
   }
 
   @Override
@@ -29,19 +31,20 @@ public class ListFlightService implements FlightService {
     return this.flightDao.findById(id);
   }
 
-  public void delete(Flight flight) {
-    this.flightDao.delete(flight);
+  @Override
+  public void delete(Map<String, String> data) {
+    this.flightDao.delete(null);
   }
 
-  public Ticket getFreeTicket(){
+  public Ticket getFreeTicket() {
     return null;
   }
 
-  public void setFlights(List<Flight> flights){
+  public void setFlights(List<Flight> flights) {
     this.flightDao.setFlights(flights);
   }
 
-  public void save(){
+  public void save() {
     this.flightDao.save();
   }
 

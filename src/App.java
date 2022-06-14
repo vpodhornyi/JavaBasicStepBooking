@@ -32,14 +32,13 @@ public class App {
     listPersonDao.add(new Admin("root", "root"));
   }
 
-  private void booking() throws NumberException {
+  private void booking() {
     while (true) {
       try {
         int menuNumber = MenuView.bookingChoose(this.scanner);
 
         switch (menuNumber) {
           case 1:
-            System.out.println("book");
             Ticket ticket = this.flightController.getTicketByFlightId(this.scanner);
             this.person.booking(ticket);
 
@@ -69,13 +68,19 @@ public class App {
           case 2:
             this.flightController.printAllFlights();
             break;
+          case 3:
+            this.personController.createPerson(this.scanner);
+            break;
           case 4:
-            this.booking();
+            this.personController.deletePerson(this.scanner);
             break;
           case 5:
+            this.booking();
+            break;
+          case 6:
             return;
         }
-      } catch (NumberException | EmptyException e) {
+      } catch (NumberException | EmptyException | PersonNameException | NameException e) {
         Helper.printBorder(e.getMessage(), '*');
       }
     }
@@ -84,11 +89,10 @@ public class App {
   public void run() {
     while (true) {
       try {
-//        int menuNumber = MenuView.loginMenu(this.scanner);
-        int menuNumber = 1;
+        int menuNumber = MenuView.loginMenu(this.scanner);
 
         if (menuNumber == 1) {
-          this.person = this.personController.login();
+          this.person = this.personController.login(this.scanner);
           this.session();
 
         } else if (menuNumber == 2) {

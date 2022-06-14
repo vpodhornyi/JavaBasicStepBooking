@@ -2,6 +2,8 @@ package controller;
 
 import exception.NameException;
 import exception.PasswordException;
+import exception.PersonNameException;
+import model.Client;
 import model.Person;
 import service.PersonService;
 import view.ConsoleView;
@@ -12,19 +14,22 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class PersonController {
-
-  private final Scanner scanner;
-
   private final PersonService personService;
 
   public PersonController(PersonService personService) {
     this.personService = personService;
-    this.scanner = new Scanner(System.in);
   }
 
-  public void createPerson() {
+  public void createPerson(Scanner scanner) {
+    Map<String, String> data = ConsoleView.getNamePassword(scanner);
 
-    personService.add(null);
+    personService.add(data);
+  }
+
+  public void deletePerson(Scanner scanner) {
+    Map<String, String> data = ConsoleView.getName(scanner);
+
+    personService.delete(data);
   }
 
   public void bookingForHimself() {
@@ -41,20 +46,9 @@ public class PersonController {
     Optional<List<Person>> optionalFlight = personService.findAll();
   }
 
-  public Person login() throws NameException, PasswordException {
-//    Map<String, String> loginData = ConsoleView.login(this.scanner);
+  public Person login(Scanner scanner) {
+    Map<String, String> data = ConsoleView.getNamePassword(scanner);
 
-    Optional<Person> optionalPerson = this.personService.findByName("root");
-
-    if (optionalPerson.isPresent()) {
-      Person person = optionalPerson.get();
-      String password = person.getPassword();
-
-      if (password.equals("root")) return person;
-
-      throw new PasswordException();
-    }
-
-    throw new NameException();
+    return this.personService.login(data);
   }
 }

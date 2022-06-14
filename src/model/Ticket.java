@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Optional;
 
 public abstract class Ticket extends Id implements Serializable {
-  private Person owner;
+  private Person owner = null;
   private final Flight flight;
 
   public Ticket(Flight flight) {
@@ -12,19 +12,23 @@ public abstract class Ticket extends Id implements Serializable {
     this.flight.addTicket(this);
   }
 
-  public boolean isBooking(){
+  public boolean isBooking() {
     return this.owner != null;
   }
 
-  public boolean isNotBooking(){
+  public boolean isNotBooking() {
     return this.owner == null;
   }
 
-  public Optional<Person> getOwner(){
+  public Optional<Person> getOwner() {
     return Optional.of(owner);
   }
 
-  public void setOwner(Person person){
+  public void deleteOwner() {
+    this.owner = null;
+  }
+
+  public void setOwner(Person person) {
     this.owner = person;
   }
 
