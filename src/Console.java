@@ -32,7 +32,7 @@ public class Console {
     this.generator = new Generator();
 
     // create Admin
-    listPersonDao.add(new Admin("root", "root", 100_000.0));
+    listPersonDao.add(new Admin("root", "root", 10_000.0));
   }
 
   private void booking() {
