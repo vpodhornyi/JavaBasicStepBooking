@@ -31,13 +31,7 @@ public class PersonController {
 
   public void printAllPersons() {
     List<Person> people = personService.findAll();
-
-    if (people.size() != 0) {
-      Table.printPeople(people);
-      return;
-    }
-
-    throw new EmptyException();
+    Table.printPeople(people);
   }
 
   public void printOwnTickets(Person person) {

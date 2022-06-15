@@ -7,6 +7,7 @@ import model.Flight;
 import model.Person;
 import model.Ticket;
 import view.SuccessView;
+import view.Table;
 
 import java.util.List;
 import java.util.Map;
@@ -55,8 +56,14 @@ public class ListPersonService implements PersonService {
   public List<Person> findAll() {
     Optional<List<Person>> optionalPeople = this.personDao.findAll();
 
-    if (optionalPeople.isPresent()) return optionalPeople.get();
+    if (optionalPeople.isPresent()) {
 
+      List<Person> people = optionalPeople.get();
+
+      if (people.size() == 0) throw new EmptyException();
+
+      return people;
+    }
     throw new EmptyException();
   }
 
