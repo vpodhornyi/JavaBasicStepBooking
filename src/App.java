@@ -23,8 +23,8 @@ public class App {
   public App() {
     this.scanner = new Scanner(System.in);
     ListPersonDao listPersonDao = new ListPersonDao();
-    this.flightController = new FlightController(new ListFlightService(new ListFlightDao(), listPersonDao));
     ListPersonService listPersonService = new ListPersonService(listPersonDao);
+    this.flightController = new FlightController(new ListFlightService(new ListFlightDao()), listPersonService);
     this.personController = new PersonController(listPersonService);
     this.generator = new Generator();
 
@@ -60,8 +60,9 @@ public class App {
         int menuNumber = MenuView.mainMenu(this.scanner, this.person);
         switch (menuNumber) {
           case 1:
+            // TODO set count from console
             List<Flight> flights = this.generator.generateFlights(10, 120);
-            this.flightController.generateDataFLights(this.person, flights);
+            this.flightController.generateDataFLights(flights);
             break;
           case 2:
             this.flightController.printAllFlights();

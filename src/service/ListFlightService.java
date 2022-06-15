@@ -1,11 +1,8 @@
 package service;
 
 import dao.FlightDao;
-import dao.PersonDao;
 import exception.*;
 import model.Flight;
-import model.Person;
-import model.Ticket;
 
 import java.util.List;
 import java.util.Map;
@@ -14,15 +11,12 @@ import java.util.Optional;
 public class ListFlightService implements FlightService {
 
   private final FlightDao flightDao;
-  private final PersonDao personDao;
 
-  public ListFlightService(FlightDao flightDao, PersonDao personDao) {
+  public ListFlightService(FlightDao flightDao) {
     this.flightDao = flightDao;
-    this.personDao = personDao;
   }
 
   public void add(Map<String, String> data) {
-
     this.flightDao.add(null);
   }
 
@@ -39,7 +33,7 @@ public class ListFlightService implements FlightService {
   @Override
   public Flight findById(Map<String, String> data) {
 
-    Optional<Flight> optionalFlight = this.flightDao.findById("data");
+    Optional<Flight> optionalFlight = this.flightDao.findById(data.get(FIELD_ID));
 
     if (optionalFlight.isPresent()) return optionalFlight.get();
 
@@ -53,48 +47,6 @@ public class ListFlightService implements FlightService {
 
   public void setFlights(List<Flight> flights) {
     this.flightDao.setFlights(flights);
-  }
-
-  @Override
-  public void bookingTicket(Map<String, String> data, Person person) {
-    Optional<Flight> optionalFlight = this.flightDao.findById(data.get(FIELD_ID));
-
-    if (optionalFlight.isPresent()) {
-      Flight flight = optionalFlight.get();
-
-      Optional<Ticket> optionalTicket = flight.getFreeBaseTicket();
-
-      if (optionalTicket.isPresent()) {
-        Ticket ticket = optionalTicket.get();
-        person.booking(ticket);
-        return;
-      }
-
-      throw new FreeTicketException();
-    }
-    throw new FlightException();
-  }
-
-  @Override
-  public void bookingTicket(Map<String, String> data) {
-    Optional<Flight> optionalFlight = this.flightDao.findById(data.get(FIELD_ID));
-    Optional<Person> optionalPerson = this.personDao.findByName(data.get(FIELD_NAME));
-
-    if (optionalFlight.isPresent()) {
-      Flight flight = optionalFlight.get();
-
-      Optional<Ticket> optionalTicket = flight.getFreeBaseTicket();
-
-      if (optionalTicket.isPresent()) {
-        if (optionalPerson.isPresent()) {
-          optionalPerson.get().booking(optionalTicket.get());
-          return;
-        }
-        throw new PersonNotExistException();
-      }
-      throw new FreeTicketException();
-    }
-    throw new FlightException();
   }
 
   public void save() {

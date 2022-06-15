@@ -83,7 +83,7 @@ public class ListPersonService implements PersonService {
 
     if (optionalPerson.isPresent()) return optionalPerson.get();
 
-    throw new PersonNameException();
+    throw new PersonNotExistException();
   }
 
   @Override

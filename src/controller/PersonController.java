@@ -35,16 +35,6 @@ public class PersonController {
     personService.delete(data);
   }
 
-  public void bookingForHimself() {
-
-    personService.booking(null, null);
-  }
-
-  public void bookingForOtherPerson() {
-
-    personService.booking(null, null);
-  }
-
   public void printAllPersons() {
     List<Person> people = personService.findAll();
 

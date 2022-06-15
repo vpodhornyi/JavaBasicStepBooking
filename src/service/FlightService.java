@@ -9,8 +9,5 @@ import java.util.Map;
 
 public interface FlightService extends DefaultService<Flight> {
 
-  public void setFlights(List<Flight> flightList);
-
-  public void bookingTicket(Map<String, String> data, Person person);
-  public void bookingTicket(Map<String, String> data);
+  void setFlights(List<Flight> flightList);
 }
