@@ -10,5 +10,5 @@ public interface PersonService extends DefaultService<Person> {
 
   Person login(Map<String, String> data);
   Person findByName(Map<String, String> data);
-  public void booking(Person person, Ticket ticket);
+  public void unbooking(Person person, Map<String, String> data);
 }

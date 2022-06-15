@@ -31,20 +31,11 @@ public class FlightController {
 
   private void reduceAccount(Person person, Ticket ticket) {
     double account = person.getAccount();
-    double ticketCost = ticket.getCost();
+    double cost = ticket.getCost();
 
-    if (account < ticketCost) throw new NotEnoughMoney();
+    if (account < cost) throw new NotEnoughMoney();
 
-    person.setAccount(account - ticketCost);
-  }
-
-  private void increaseAccount(Person person, Ticket ticket) {
-    double account = person.getAccount();
-    double ticketCost = ticket.getCost();
-
-    if (account < ticketCost) throw new NotEnoughMoney();
-
-    person.setAccount(account + ticketCost);
+    person.reduceAccount(cost);
   }
 
   private void bookingTicket(Flight flight, Person person, Scanner scanner) {
@@ -60,65 +51,28 @@ public class FlightController {
       if (num == BASE_TICKET) {
         Ticket baseTicket = freeBaseTicket.get();
         this.reduceAccount(person, baseTicket);
-        person.booking(baseTicket);
+        person.addTicket(baseTicket);
       }
       if (num == BUSINESS_TICKET) {
         Ticket businessTicket = freeBusinessTicket.get();
         this.reduceAccount(person, businessTicket);
-        person.booking(businessTicket);
+        person.addTicket(businessTicket);
       }
 
     } else if (freeBaseTicket.isPresent()) {
       Ticket baseTicket = freeBaseTicket.get();
       this.reduceAccount(person, baseTicket);
-      person.booking(baseTicket);
+      person.addTicket(baseTicket);
 
     } else if (freeBusinessTicket.isPresent()) {
       Ticket businessTicket = freeBusinessTicket.get();
       this.reduceAccount(person, businessTicket);
-      person.booking(businessTicket);
+      person.addTicket(businessTicket);
 
     } else {
       throw new FreeTicketException();
     }
     SuccessView.bookingSuccess();
-  }
-
-  private void unbookingTicket(Flight flight, Person person, Scanner scanner) {
-    Optional<Ticket> freeBaseTicket = flight.getFreeBaseTicket();
-    Optional<Ticket> freeBusinessTicket = flight.getFreeBusinessTicket();
-
-    if (freeBaseTicket.isPresent() && freeBusinessTicket.isPresent()) {
-      int num = MenuView.ticketChoose(scanner);
-      final int BASE_TICKET = 1;
-      final int BUSINESS_TICKET = 2;
-
-
-      if (num == BASE_TICKET) {
-        Ticket baseTicket = freeBaseTicket.get();
-        this.increaseAccount(person, baseTicket);
-        person.unbooking(baseTicket);
-      }
-      if (num == BUSINESS_TICKET) {
-        Ticket businessTicket = freeBusinessTicket.get();
-        this.increaseAccount(person, businessTicket);
-        person.unbooking(businessTicket);
-      }
-
-    } else if (freeBaseTicket.isPresent()) {
-      Ticket baseTicket = freeBaseTicket.get();
-      this.increaseAccount(person, baseTicket);
-      person.unbooking(baseTicket);
-
-    } else if (freeBusinessTicket.isPresent()) {
-      Ticket businessTicket = freeBusinessTicket.get();
-      this.increaseAccount(person, businessTicket);
-      person.unbooking(businessTicket);
-
-    } else {
-      throw new FreeTicketException();
-    }
-    SuccessView.unbookingSuccess();
   }
 
   public void bookingTicketForClient(Scanner scanner) throws FlightException {
@@ -134,19 +88,6 @@ public class FlightController {
     this.bookingTicket(flight, person, scanner);
   }
 
-  public void unbookingTicketForClient(Scanner scanner) throws FlightException {
-    Map<String, String> data = ConsoleView.getFlightIdClientName(scanner);
-    Flight flight = this.flightService.findById(data);
-    Person person = this.personService.findByName(data);
-    this.unbookingTicket(flight, person, scanner);
-  }
-
-  public void unbookingTicketForHimself(Scanner scanner, Person person) throws FlightException {
-    Map<String, String> dataFlightId = ConsoleView.getFlightId(scanner);
-    Flight flight = this.flightService.findById(dataFlightId);
-    this.unbookingTicket(flight, person, scanner);
-  }
-
   public void generateDataFLights(List<Flight> flights) {
     this.flightService.setFlights(flights);
   }
@@ -155,7 +96,7 @@ public class FlightController {
     List<Flight> flights = flightService.findAll();
 
     if (flights.size() != 0) {
-      Table.showFlights(flights);
+      Table.printFlights(flights);
       return;
     }
 

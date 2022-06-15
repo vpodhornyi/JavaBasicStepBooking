@@ -1,23 +1,21 @@
 package model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public abstract class Person extends Id implements Serializable {
   private final String name;
   private final String password;
   private Double account = 0.0;
 
-  private final Set<Ticket> tickets;
+  private final List<Ticket> tickets;
 
   public Person(String name, String password, Double account) {
     super();
     this.name = name;
     this.password = password;
     this.account = account;
-    this.tickets = new HashSet<>();
+    this.tickets = new ArrayList<>();
   }
 
   public String getName() {
@@ -28,24 +26,34 @@ public abstract class Person extends Id implements Serializable {
     return password;
   }
 
-  public void setAccount(Double account) {
-    this.account = account;
+  public void reduceAccount(Double cost) {
+    this.account -= cost;
+  }
+
+  public void increaseAccount(Double cost) {
+    this.account += cost;
   }
 
   public Double getAccount() {
     return account;
   }
 
-  public Set<Ticket> getTickets() {
-    return new HashSet<>(this.tickets);
+  public List<Ticket> getTickets() {
+    return new ArrayList<>(this.tickets);
   }
 
-  public void booking(Ticket ticket) {
+  public void addTicket(Ticket ticket) {
     tickets.add(ticket);
     ticket.setOwner(this);
   }
 
-  public void unbooking(Ticket ticket) {
+  public Optional<Ticket> getTicketById(String id) {
+    return this.tickets.stream()
+        .filter(t -> t.getId().equals(id))
+        .findFirst();
+  }
+
+  public void deleteTicket(Ticket ticket) {
     tickets.remove(ticket);
     ticket.setOwner(null);
   }
@@ -54,11 +62,11 @@ public abstract class Person extends Id implements Serializable {
     this.tickets.remove(ticket);
   }
 
-  public boolean isClient(){
+  public boolean isClient() {
     return false;
   }
 
-  public boolean isAdmin(){
+  public boolean isAdmin() {
     return false;
   }
 

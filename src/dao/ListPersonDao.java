@@ -1,6 +1,7 @@
 package dao;
 
 import model.Person;
+import model.Ticket;
 
 import java.util.ArrayList;
 import java.util.List;

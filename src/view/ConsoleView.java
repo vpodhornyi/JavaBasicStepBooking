@@ -55,9 +55,32 @@ public class ConsoleView {
     return data;
   }
 
+  public static Map<String, String> getTicketId(Scanner scanner) {
+    Map<String, String> data = new HashMap<>();
+    System.out.print("Enter ticket ID: ");
+    String id = scanner.nextLine();
+
+    data.put("id", id);
+
+    return data;
+  }
+
   public static Map<String, String> getFlightIdClientName(Scanner scanner) {
     Map<String, String> data = new HashMap<>();
     System.out.print("Enter flight ID: ");
+    String id = scanner.nextLine();
+    System.out.print("Enter name: ");
+    String name = scanner.nextLine();
+
+    data.put("id", id);
+    data.put("name", name);
+
+    return data;
+  }
+
+  public static Map<String, String> getTicketIdClientName(Scanner scanner) {
+    Map<String, String> data = new HashMap<>();
+    System.out.print("Enter ticket ID: ");
     String id = scanner.nextLine();
     System.out.print("Enter name: ");
     String name = scanner.nextLine();

@@ -4,15 +4,17 @@ import model.Flight;
 import helper.Helper;
 import model.Id;
 import model.Person;
+import model.Ticket;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Table {
 
-  public static void showFlights(List<Flight> flights) {
+  public static void printFlights(List<Flight> flights) {
 
     if (flights.size() == 0) return;
 
@@ -125,7 +127,7 @@ public class Table {
     });
   }
 
-  public static void showPeople(List<Person> people) {
+  public static void printPeople(List<Person> people) {
 
     if (people.size() == 0) return;
 
@@ -195,6 +197,110 @@ public class Table {
       str.append(separator)
           .append(person.getAccount())
           .append(Helper.charRepeat(headerLn.get(5) - String.valueOf(person.getAccount()).length(), ' '));
+      str.append(" |");
+
+      System.out.println(str);
+
+      System.out.println(Helper.charRepeat(headerStr.length(), '-'));
+    });
+  }
+
+  public static void  printTickets(List<Ticket> tickets) {
+
+    if (tickets.size() == 0) return;
+
+    HeaderTicketsTable[] header = HeaderTicketsTable.values();
+
+    List<Integer> maxes = new ArrayList<>();
+
+    maxes.add(String.valueOf(tickets.size()).length());
+    maxes.add(Id.getLength());
+    maxes.add(tickets.stream()
+        .max(Comparator.comparingInt(f -> f.getFlight().getFromCity().getName().length()))
+        .get().getFlight().getFromCity().getName().length());
+    maxes.add(tickets.stream()
+        .max(Comparator.comparingInt(f -> f.getFlight().getToCity().getName().length()))
+        .get().getFlight().getToCity().getName().length());
+    maxes.add(tickets.stream()
+        .max(Comparator.comparingInt(f -> f.getFlight().getTime().length()))
+        .get().getFlight().getTime().length());
+    maxes.add(tickets.stream()
+        .max(Comparator.comparingInt(f -> f.getFlight().getAirline().getName().length()))
+        .get().getFlight().getAirline().getName().length());
+    maxes.add(tickets.stream()
+        .max(Comparator.comparingInt(f -> f.getFlight().getAirplane().getName().length()))
+        .get().getFlight().getAirplane().getName().length());
+    maxes.add(Id.getLength());
+    maxes.add(tickets.stream()
+        .max(Comparator.comparingInt(f -> f.getType().length()))
+        .get().getType().length());
+    maxes.add(String.valueOf(tickets.stream()
+        .max(Comparator.comparingInt(f -> String.valueOf(f.getCost()).length()))
+        .get().getCost()).length());
+
+
+    List<Integer>headerLn =  new ArrayList<>();
+
+    String headerStr = IntStream.range(0, header.length)
+        .mapToObj(i -> {
+          String h = header[i].getName();
+          int hln = h.length();
+          int max = maxes.get(i);
+          String str =  "| " + h + (hln > max ? " " : Helper.charRepeat((max - hln) + 1, ' '));
+          headerLn.add(str.length() - 3);
+          return str;
+        })
+        .reduce("", (s1, s2) -> s1 + s2) + "|";
+
+    System.out.println(Helper.charRepeat(headerStr.length(), '*'));
+    System.out.println(headerStr);
+    System.out.println(Helper.charRepeat(headerStr.length(), '*'));
+
+    IntStream.range(0, tickets.size()).forEach(i -> {
+      Ticket ticket = tickets.get(i);
+      StringBuilder str = new StringBuilder();
+      String separator = " | ";
+
+      str.append("| ")
+          .append(i + 1)
+          .append(Helper.charRepeat(maxes.get(0) - String.valueOf(i + 1).length(), ' '));
+
+      str.append(separator)
+          .append(ticket.getId())
+          .append(Helper.charRepeat(headerLn.get(1) - ticket.getId().length(), ' '));
+
+      str.append(separator)
+          .append(ticket.getFlight().getFromCity().getName())
+          .append(Helper.charRepeat(headerLn.get(2) - ticket.getFlight().getFromCity().getName().length(), ' '));
+
+      str.append(separator)
+          .append(ticket.getFlight().getToCity().getName())
+          .append(Helper.charRepeat(headerLn.get(3) - ticket.getFlight().getToCity().getName().length(), ' '));
+
+      str.append(separator)
+          .append(ticket.getFlight().getTime())
+          .append(Helper.charRepeat(headerLn.get(4) - ticket.getFlight().getTime().length(), ' '));
+
+      str.append(separator)
+          .append(ticket.getFlight().getAirline().getName())
+          .append(Helper.charRepeat(headerLn.get(5) - ticket.getFlight().getAirline().getName().length(), ' '));
+
+      str.append(separator)
+          .append(ticket.getFlight().getAirplane().getName())
+          .append(Helper.charRepeat(headerLn.get(6) - ticket.getFlight().getAirplane().getName().length(), ' '));
+
+      str.append(separator)
+          .append(ticket.getFlight().getId())
+          .append(Helper.charRepeat(headerLn.get(7) - ticket.getFlight().getId().length(), ' '));
+
+      str.append(separator)
+          .append(ticket.getType())
+          .append(Helper.charRepeat(headerLn.get(8) - ticket.getType().length(), ' '));
+
+      str.append(separator)
+          .append(ticket.getCost())
+          .append(Helper.charRepeat(headerLn.get(9) - String.valueOf(ticket.getCost()).length(), ' '));
+
       str.append(" |");
 
       System.out.println(str);

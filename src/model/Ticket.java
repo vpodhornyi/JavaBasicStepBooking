@@ -7,11 +7,13 @@ public abstract class Ticket extends Id implements Serializable {
   private Person owner = null;
   private final Flight flight;
   private final Double cost;
+  private final String type;
 
-  public Ticket(Flight flight, Double cost) {
+  public Ticket(Flight flight, Double cost, String type) {
     this.flight = flight;
     int costPercent = flight.getAirline().getCostPercent();
     this.cost = cost + ((cost * costPercent) / 100);
+    this.type = type;
     this.flight.addTicket(this);
   }
 
@@ -50,6 +52,10 @@ public abstract class Ticket extends Id implements Serializable {
 
   public boolean isBusiness() {
     return false;
+  }
+
+  public String getType(){
+   return this.type;
   }
 
   @Override

@@ -54,7 +54,6 @@ public class App {
       }
     }
   }
-
   private void unbooking() {
     while (true) {
       try {
@@ -62,21 +61,42 @@ public class App {
 
         switch (menuNumber) {
           case 1:
-            this.flightController.unbookingTicketForHimself(this.scanner, this.person);
+            this.personController.unbookingTicketForHimself(this.scanner, this.person);
             break;
           case 2:
-            this.flightController.unbookingTicketForClient(this.scanner);
+            this.personController.unbookingTicketForClient(this.scanner);
             break;
           case 3:
             return;
           default:
         }
-      } catch (NumberException | FlightException | FreeTicketException | PersonNotExistException | NotEnoughMoney e) {
+      } catch (NumberException | TicketNotExist e) {
         Helper.printBorder(e.getMessage(), '*');
       }
     }
   }
 
+  public void printTickets() {
+    while (true) {
+      try {
+        int menuNumber = MenuView.personChoose(this.scanner);
+
+        switch (menuNumber) {
+          case 1:
+            this.personController.printOwnTickets(this.person);
+            break;
+          case 2:
+            this.personController.printOtherPersonTickets(this.scanner);
+            break;
+          case 3:
+            return;
+          default:
+        }
+      } catch (NumberException | PersonNotExistException e) {
+        Helper.printBorder(e.getMessage(), '*');
+      }
+    }
+  }
   private void session() {
     while (true) {
       try {
@@ -109,9 +129,11 @@ public class App {
             this.unbooking();
             break;
           case 9:
-            this.flightController.printAllFlights();
+            this.printTickets();
             break;
           case 10:
+            // TODO change person account
+          case 11:
             return;
         }
       } catch (NumberException | EmptyException | PersonNameException | NameException e) {

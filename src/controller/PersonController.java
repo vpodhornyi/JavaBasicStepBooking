@@ -1,20 +1,13 @@
 package controller;
 
-import exception.EmptyException;
-import exception.NameException;
-import exception.PasswordException;
-import exception.PersonNameException;
-import model.Client;
-import model.Flight;
+import exception.*;
 import model.Person;
+import model.Ticket;
 import service.PersonService;
 import view.ConsoleView;
 import view.Table;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 public class PersonController {
   private final PersonService personService;
@@ -39,11 +32,38 @@ public class PersonController {
     List<Person> people = personService.findAll();
 
     if (people.size() != 0) {
-      Table.showPeople(people);
+      Table.printPeople(people);
       return;
     }
 
     throw new EmptyException();
+  }
+
+  public void printOwnTickets(Person person) {
+    List<Ticket> tickets = person.getTickets();
+
+    if (tickets.size() != 0) {
+      Table.printTickets(tickets);
+      return;
+    }
+
+    throw new EmptyException();
+  }
+
+  public void printOtherPersonTickets(Scanner scanner) {
+    Map<String, String> data = ConsoleView.getName(scanner);
+    this.printOwnTickets(this.personService.findByName(data));
+  }
+
+  public void unbookingTicketForHimself(Scanner scanner, Person person) throws FlightException {
+    Map<String, String> data = ConsoleView.getTicketId(scanner);
+    this.personService.unbooking(person, data);
+  }
+
+  public void unbookingTicketForClient(Scanner scanner) throws FlightException {
+    Map<String, String> data = ConsoleView.getName(scanner);
+    Person person = this.personService.findByName(data);
+    this.unbookingTicketForHimself(scanner, person);
   }
 
   public Person login(Scanner scanner) {

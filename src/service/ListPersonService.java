@@ -6,6 +6,7 @@ import model.Client;
 import model.Flight;
 import model.Person;
 import model.Ticket;
+import view.SuccessView;
 
 import java.util.List;
 import java.util.Map;
@@ -41,7 +42,7 @@ public class ListPersonService implements PersonService {
     if (optionalPerson.isPresent()) {
 
       Person person = optionalPerson.get();
-      Set<Ticket> tickets = person.getTickets();
+      List<Ticket> tickets = person.getTickets();
       tickets.forEach(Ticket::deleteOwner);
       this.personDao.delete(person);
       return;
@@ -93,8 +94,19 @@ public class ListPersonService implements PersonService {
   }
 
   @Override
-  public void booking(Person person, Ticket ticket) {
-    person.booking(ticket);
+  public void unbooking(Person person, Map<String, String> data) {
+    Optional<Ticket> optionalTicket = person.getTicketById(data.get(FIELD_ID));
+
+    if (optionalTicket.isPresent()) {
+      Ticket ticket = optionalTicket.get();
+      person.deleteTicket(ticket);
+      person.increaseAccount(ticket.getCost());
+
+      SuccessView.unbookingSuccess();
+
+      return;
+    }
+    throw new TicketNotExist();
   }
 
   public void save() {
