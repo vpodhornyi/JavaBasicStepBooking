@@ -7,6 +7,7 @@ import helper.Helper;
 import model.*;
 import service.ListFlightService;
 import service.ListPersonService;
+import view.ConsoleView;
 import view.MenuView;
 
 import java.util.*;
@@ -60,8 +61,8 @@ public class App {
         int menuNumber = MenuView.mainMenu(this.scanner, this.person);
         switch (menuNumber) {
           case 1:
-            // TODO set count from console
-            List<Flight> flights = this.generator.generateFlights(10, 120);
+            Map<String, String> data = ConsoleView.getGeneratorFlightsData(this.scanner);
+            List<Flight> flights = this.generator.generateFlights(data);
             this.flightController.generateDataFLights(flights);
             break;
           case 2:

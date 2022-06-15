@@ -10,6 +10,7 @@ import service.FlightService;
 import service.PersonService;
 import view.ConsoleView;
 import view.MenuView;
+import view.SuccessView;
 import view.Table;
 
 import java.util.List;
@@ -48,6 +49,7 @@ public class FlightController {
     } else {
       throw new FreeTicketException();
     }
+    SuccessView.bookingSuccess();
   }
 
   public void bookingTicketForClient(Scanner scanner) throws FlightException {

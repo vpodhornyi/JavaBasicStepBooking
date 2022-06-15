@@ -1,3 +1,4 @@
+import exception.NumberException;
 import model.*;
 
 import java.util.*;
@@ -51,19 +52,29 @@ public class Generator {
     return ThreadLocalRandom.current().nextLong(startMillis, endMillis);
   }
 
-  public List<Flight> generateFlights(int countFlights, int countDays) {
+  public List<Flight> generateFlights(Map<String, String> data) {
     List<Flight> flights = new ArrayList<>();
+    final String FIELD_COUNT_FLIGHTS = "countFlights";
+    final String FIELD_COUNT_DAYS = "countDays";
 
-    for (int i = 0; i < countFlights; i++) {
-      City fromCity = getRandomCity();
-      City toCity;
-      do {
-        toCity = getRandomCity();
-      } while (fromCity.equals(toCity));
+    try {
+      int countFlights = Integer.parseInt(data.get(FIELD_COUNT_FLIGHTS));
+      int countDays = Integer.parseInt(data.get(FIELD_COUNT_DAYS));
 
-      Flight flight = new Flight(fromCity, toCity, getRandomAirline(), getRandomAirplane(), getRandomDate(countDays));
-      flights.add(flight);
-      flight.setTickets(generateTickets(flight));
+      for (int i = 0; i < countFlights; i++) {
+        City fromCity = getRandomCity();
+        City toCity;
+        do {
+          toCity = getRandomCity();
+        } while (fromCity.equals(toCity));
+
+        Flight flight = new Flight(fromCity, toCity, getRandomAirline(), getRandomAirplane(), getRandomDate(countDays));
+        flights.add(flight);
+        flight.setTickets(generateTickets(flight));
+      }
+
+    } catch (Exception e) {
+      throw new NumberException();
     }
 
     return flights;

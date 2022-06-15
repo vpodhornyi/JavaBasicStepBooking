@@ -52,6 +52,19 @@ public class ConsoleView {
     return data;
   }
 
+  public static Map<String, String> getGeneratorFlightsData(Scanner scanner) {
+    Map<String, String> data = new HashMap<>();
+    System.out.print("Enter count flights: ");
+    String countFlights = scanner.nextLine();
+    System.out.print("Enter count days: ");
+    String countDays = scanner.nextLine();
+
+    data.put("countFlights", countFlights);
+    data.put("countDays", countDays);
+
+    return data;
+  }
+
   public static String string(Scanner scanner, String str) {
     System.out.print(str);
     return scanner.nextLine();
