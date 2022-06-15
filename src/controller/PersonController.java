@@ -46,19 +46,14 @@ public class PersonController {
   }
 
   public void printAllPersons() {
-    Optional<List<Person>> optionalPeople = personService.findAll();
+    List<Person> people = personService.findAll();
 
-    if (optionalPeople.isPresent()) {
-
-      List<Person> people = optionalPeople.get();
-
-      if (people.size() != 0) {
-        Table.showPeople(people);
-        return;
-      }
-
-      throw new EmptyException();
+    if (people.size() != 0) {
+      Table.showPeople(people);
+      return;
     }
+
+    throw new EmptyException();
   }
 
   public Person login(Scanner scanner) {

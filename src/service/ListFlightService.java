@@ -2,10 +2,7 @@ package service;
 
 import dao.FlightDao;
 import dao.PersonDao;
-import exception.FlightException;
-import exception.FreeTicketException;
-import exception.PersonNameException;
-import exception.PersonNotExistException;
+import exception.*;
 import model.Flight;
 import model.Person;
 import model.Ticket;
@@ -30,8 +27,13 @@ public class ListFlightService implements FlightService {
   }
 
   @Override
-  public Optional<List<Flight>> findAll() {
-    return this.flightDao.findAll();
+  public List<Flight> findAll() {
+
+    Optional<List<Flight>> optionalFlight = this.flightDao.findAll();
+
+    if (optionalFlight.isPresent()) return optionalFlight.get();
+
+    throw new EmptyException();
   }
 
   @Override

@@ -1,10 +1,7 @@
 package service;
 
 import dao.PersonDao;
-import exception.FlightException;
-import exception.NameException;
-import exception.PasswordException;
-import exception.PersonNameException;
+import exception.*;
 import model.Client;
 import model.Flight;
 import model.Person;
@@ -48,8 +45,12 @@ public class ListPersonService implements PersonService {
   }
 
   @Override
-  public Optional<List<Person>> findAll() {
-    return this.personDao.findAll();
+  public List<Person> findAll() {
+    Optional<List<Person>> optionalPeople = this.personDao.findAll();
+
+    if (optionalPeople.isPresent()) return optionalPeople.get();
+
+    throw new EmptyException();
   }
 
   @Override

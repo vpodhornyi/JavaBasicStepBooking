@@ -1,11 +1,7 @@
 package service;
 
-import model.Flight;
-import model.Person;
-
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public interface DefaultService<T> {
   String FIELD_ID = "id";
@@ -14,7 +10,7 @@ public interface DefaultService<T> {
 
   void add(Map<String, String> data);
 
-  Optional<List<T>> findAll();
+  List<T> findAll();
 
   T findById(Map<String, String> data);
 
