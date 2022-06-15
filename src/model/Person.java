@@ -83,7 +83,7 @@ public abstract class Person extends Id implements Serializable {
     str.append("); ");
     str.append("Ticket(s) = ");
     str.append(this.tickets.size());
-    str.append("; Balance = ");
+    str.append("; Account balance = ");
     str.append(this.account);
 
     return str.toString();
