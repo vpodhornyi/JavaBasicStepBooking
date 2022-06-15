@@ -41,7 +41,7 @@ public class App {
         switch (menuNumber) {
           case 1:
             this.flightController.bookingTicketForHimself(this.scanner, this.person);
-             break;
+            break;
           case 2:
             this.flightController.bookingTicketForClient(this.scanner);
             break;
@@ -54,6 +54,7 @@ public class App {
       }
     }
   }
+
   private void unbooking() {
     while (true) {
       try {
@@ -97,10 +98,11 @@ public class App {
       }
     }
   }
-  private void session() {
+
+  private void adminSession() {
     while (true) {
       try {
-        int menuNumber = MenuView.mainMenu(this.scanner, this.person);
+        int menuNumber = MenuView.mainMenuAdmin(this.scanner, this.person);
         switch (menuNumber) {
           case 1:
             Map<String, String> data = ConsoleView.getGeneratorFlightsData(this.scanner);
@@ -132,11 +134,38 @@ public class App {
             this.printTickets();
             break;
           case 10:
-            // TODO change person account
-          case 11:
             return;
         }
       } catch (NumberException | EmptyException | PersonNameException | NameException e) {
+        Helper.printBorder(e.getMessage(), '*');
+      }
+    }
+  }
+
+  private void clientSession() {
+    while (true) {
+      try {
+        int menuNumber = MenuView.mainMenuClient(this.scanner, this.person);
+        switch (menuNumber) {
+          case 1:
+            this.flightController.printAllFlights();
+            break;
+          case 2:
+            this.flightController.printAllFlights();
+            break;
+          case 3:
+            this.flightController.bookingTicketForHimself(this.scanner, this.person);
+            break;
+          case 4:
+            this.personController.unbookingTicketForHimself(this.scanner, this.person);
+            break;
+          case 5:
+            this.personController.printOwnTickets(this.person);
+            break;
+          case 6:
+            return;
+        }
+      } catch (NumberException | EmptyException | FlightException | TicketNotExist e) {
         Helper.printBorder(e.getMessage(), '*');
       }
     }
@@ -149,7 +178,9 @@ public class App {
 
         if (menuNumber == 1) {
           this.person = this.personController.login(this.scanner);
-          this.session();
+
+          if (person.isAdmin()) this.adminSession();
+          if (person.isClient()) this.clientSession();
 
         } else if (menuNumber == 2) {
           break;

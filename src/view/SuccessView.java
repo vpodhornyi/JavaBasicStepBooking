@@ -9,4 +9,12 @@ public class SuccessView {
   public static void unbookingSuccess(){
     Helper.printBorder("Ticket successful unhooking", '+');
   }
+
+  public static void personCreateSuccess(){
+    Helper.printBorder("Person successful created", '+');
+  }
+
+  public static void personDeleteSuccess(){
+    Helper.printBorder("Person successful created", '+');
+  }
 }

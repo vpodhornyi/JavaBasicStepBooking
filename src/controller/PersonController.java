@@ -5,6 +5,7 @@ import model.Person;
 import model.Ticket;
 import service.PersonService;
 import view.ConsoleView;
+import view.SuccessView;
 import view.Table;
 
 import java.util.*;
@@ -18,14 +19,14 @@ public class PersonController {
 
   public void createPerson(Scanner scanner) {
     Map<String, String> data = ConsoleView.getNamePasswordAccount(scanner);
-
     personService.add(data);
+    SuccessView.personCreateSuccess();
   }
 
   public void deletePerson(Scanner scanner) {
     Map<String, String> data = ConsoleView.getName(scanner);
-
     personService.delete(data);
+    SuccessView.personDeleteSuccess();
   }
 
   public void printAllPersons() {
