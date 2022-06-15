@@ -14,19 +14,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PersonServiceTest {
-
-  private PersonService personService;
-  private PersonDao personDao;
-
-  private Person testPerson;
+  private final PersonService personService;
+  private final Person testPerson;
 
   public PersonServiceTest() {
-    this.personDao = new ListPersonDao();
-    this.personService = new ListPersonService(this.personDao);
+    PersonDao personDao = new ListPersonDao();
+    this.personService = new ListPersonService(personDao);
 
     Person admin = new Admin("root", "root", 100_000.0);
     this.testPerson = admin;
-    this.personDao.add(admin);
+    personDao.add(admin);
   }
 
   @Test

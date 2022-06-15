@@ -26,7 +26,14 @@ public class ListFlightService implements FlightService {
 
     Optional<List<Flight>> optionalFlight = this.flightDao.findAll();
 
-    if (optionalFlight.isPresent()) return optionalFlight.get();
+    if (optionalFlight.isPresent()) {
+
+      List<Flight> flights = optionalFlight.get();
+
+      if (flights.size() == 0) throw new EmptyException();
+
+      return flights;
+    }
 
     throw new EmptyException();
   }

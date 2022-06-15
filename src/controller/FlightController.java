@@ -96,13 +96,7 @@ public class FlightController {
 
   public void printAllFlights() {
     List<Flight> flights = flightService.findAll();
-
-    if (flights.size() != 0) {
-      Table.printFlights(flights);
-      return;
-    }
-
-    throw new EmptyException();
+    Table.printFlights(flights);
   }
 
   public void printFlightsWithFilter(Scanner scanner) {
@@ -115,8 +109,8 @@ public class FlightController {
       case 2:
         Table.printFlights(this.flightService.findAllWithCityTo(MenuView.citiesChoose(scanner)));
         break;
-     case 3:
-       Table.printFlights(this.flightService.findAllWithCityFromTo(MenuView.citiesFromToChoose(scanner)));
+      case 3:
+        Table.printFlights(this.flightService.findAllWithCityFromTo(MenuView.citiesFromToChoose(scanner)));
         break;
       case 4:
         Table.printFlights(this.flightService.findAllWithAirline(MenuView.airlineChoose(scanner)));
