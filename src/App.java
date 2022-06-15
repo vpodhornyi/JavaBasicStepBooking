@@ -51,6 +51,7 @@ public class App {
         }
       } catch (NumberException | FlightException | FreeTicketException | PersonNotExistException | NotEnoughMoney e) {
         Helper.printBorder(e.getMessage(), '*');
+        Logger.saveErrorLogs(this.person, e.getMessage());
       }
     }
   }
@@ -73,6 +74,7 @@ public class App {
         }
       } catch (NumberException | TicketNotExist e) {
         Helper.printBorder(e.getMessage(), '*');
+        Logger.saveErrorLogs(this.person, e.getMessage());
       }
     }
   }
@@ -95,6 +97,7 @@ public class App {
         }
       } catch (NumberException | PersonNotExistException e) {
         Helper.printBorder(e.getMessage(), '*');
+        Logger.saveErrorLogs(this.person, e.getMessage());
       }
     }
   }
@@ -138,6 +141,7 @@ public class App {
         }
       } catch (NumberException | EmptyException | PersonNameException | NameException | CostException | TimeException e) {
         Helper.printBorder(e.getMessage(), '*');
+        Logger.saveErrorLogs(this.person, e.getMessage());
       }
     }
   }
@@ -167,6 +171,7 @@ public class App {
         }
       } catch (NumberException | EmptyException | FlightException | TicketNotExist | CostException | TimeException e) {
         Helper.printBorder(e.getMessage(), '*');
+        Logger.saveErrorLogs(this.person, e.getMessage());
       }
     }
   }
@@ -187,6 +192,7 @@ public class App {
         }
       } catch (NameException | PasswordException | NumberException e) {
         Helper.printBorder(e.getMessage(), '*');
+        Logger.saveLoginErrorLogs(e.getMessage());
       }
     }
   }
