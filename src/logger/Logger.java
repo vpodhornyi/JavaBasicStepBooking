@@ -1,3 +1,5 @@
+package logger;
+
 import model.Person;
 
 import java.io.File;
@@ -24,6 +26,14 @@ public class Logger {
 
   public static void saveErrorLogs(Person person, String message) {
     save("Error: " + new Date() + "; Name: " + person.getName() + "; " + message);
+  }
+
+  public static void loadFileErrorLogs(String message) {
+    save("Load file Error: " + new Date() + "; " + message);
+  }
+
+  public static void saveFileErrorLogs(String message) {
+    save("Save file Error: " + new Date() + "; " + message);
   }
 
   public static void saveLoginErrorLogs(String message) {

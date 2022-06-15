@@ -72,4 +72,12 @@ public class PersonController {
 
     return this.personService.login(data);
   }
+
+  public void saveToFile() {
+    this.personService.save();
+  }
+
+  public void loadFromFile() {
+    this.personService.load();
+  }
 }

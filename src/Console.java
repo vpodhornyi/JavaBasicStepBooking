@@ -4,6 +4,7 @@ import dao.ListFlightDao;
 import dao.ListPersonDao;
 import exception.*;
 import helper.Helper;
+import logger.Logger;
 import model.*;
 import service.ListFlightService;
 import service.ListPersonService;
@@ -12,7 +13,7 @@ import view.MenuView;
 
 import java.util.*;
 
-public class App {
+public class Console {
 
   private Person person;
   private final Scanner scanner;
@@ -21,7 +22,7 @@ public class App {
   private final PersonController personController;
 
 
-  public App() {
+  Console() {
     this.scanner = new Scanner(System.in);
     ListPersonDao listPersonDao = new ListPersonDao();
     ListPersonService listPersonService = new ListPersonService(listPersonDao);
@@ -139,7 +140,8 @@ public class App {
           case 10:
             return;
         }
-      } catch (NumberException | EmptyException | PersonNameException | NameException | CostException | TimeException e) {
+      } catch (NumberException | EmptyException | PersonNameException | NameException | CostException |
+               TimeException e) {
         Helper.printBorder(e.getMessage(), '*');
         Logger.saveErrorLogs(this.person, e.getMessage());
       }
@@ -177,6 +179,9 @@ public class App {
   }
 
   public void run() {
+    this.flightController.loadFromFile();
+    this.personController.loadFromFile();
+
     while (true) {
       try {
         int menuNumber = MenuView.loginMenu(this.scanner);
@@ -188,6 +193,8 @@ public class App {
           if (person.isClient()) this.clientSession();
 
         } else if (menuNumber == 2) {
+          this.flightController.saveToFile();
+          this.personController.saveToFile();
           break;
         }
       } catch (NameException | PasswordException | NumberException e) {

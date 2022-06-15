@@ -1,6 +1,6 @@
 package dao;
 
-import model.Person;
+import logger.Logger;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -23,7 +23,7 @@ public interface DefaultDao<T> {
       oos.writeObject(list);
 
     } catch (Exception e) {
-      System.out.println(e.getMessage());
+      Logger.saveFileErrorLogs(e.getMessage());
     }
   }
 
@@ -33,7 +33,7 @@ public interface DefaultDao<T> {
       return Optional.ofNullable((List<T>) oos.readObject());
 
     } catch (Exception e) {
-      System.out.println("load - " + e.getMessage());
+      Logger.loadFileErrorLogs(e.getMessage());
     }
     return Optional.empty();
   }

@@ -133,4 +133,12 @@ public class FlightController {
         return;
     }
   }
+
+  public void saveToFile() {
+    this.flightService.save();
+  }
+
+  public void loadFromFile() {
+    this.flightService.load();
+  }
 }
