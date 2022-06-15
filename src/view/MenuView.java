@@ -1,9 +1,14 @@
 package view;
 
 import helper.Helper;
+import model.Airline;
+import model.Airplane;
+import model.City;
 import model.Person;
 
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class MenuView {
 
@@ -15,6 +20,14 @@ public class MenuView {
     System.out.println("Menu: " + str2);
     System.out.println(Helper.charRepeat(ln, '-'));
   }
+
+  private static String arrToMenuString(List<String> list) {
+    String str = IntStream.range(0, list.size())
+        .mapToObj(i -> "(" + (i + 1) + ") " + list.get(i) + ", ")
+        .reduce("", (s1, s2) -> s1 + s2);
+    return str.substring(0, str.length() - 2);
+  }
+
   public static int loginMenu(Scanner scanner) {
     printBorder("", "(1) Login, (2) Exit");
 
@@ -37,6 +50,53 @@ public class MenuView {
     printBorder("", "(1) Base, (2) Business, (3) Cansel");
 
     return Helper.getNumberFromConsole("Enter ticket number: ", 3, scanner);
+  }
+
+  public static int flightFilterChoose(Scanner scanner) {
+    List<String> arr = List.of("City from", "City to", "City from/to", "Airline",
+        "Airplane", "Min cost", "Date from/to", "Cansel");
+    printBorder("", arrToMenuString(arr));
+    return Helper.getNumberFromConsole("Enter menu number: ", arr.size(), scanner);
+  }
+
+  public static City citiesChoose(Scanner scanner) {
+    City[] values = City.values();
+    List<String> list = Arrays.stream(City.values()).map(City::getName).toList();
+    System.out.println(arrToMenuString(list));
+    int index = Helper.getNumberFromConsole("Enter city number: ", list.size(), scanner);
+
+    return values[index - 1];
+  }
+  public static Map<String, City> citiesFromToChoose(Scanner scanner) {
+    City[] values = City.values();
+    List<String> list = Arrays.stream(City.values()).map(City::getName).toList();
+    System.out.println(arrToMenuString(list));
+    int index1 = Helper.getNumberFromConsole("Enter 'From' city number: ", list.size(), scanner);
+    int index2 = Helper.getNumberFromConsole("Enter 'To' city number: ", list.size(), scanner);
+
+    Map<String, City> data = new HashMap<>();
+    data.put("fromCity", values[index1 - 1]);
+    data.put("toCity", values[index2 - 1]);
+
+    return data;
+  }
+
+  public static Airline airlineChoose(Scanner scanner) {
+    Airline[] values = Airline.values();
+    List<String> list = Arrays.stream(Airline.values()).map(Airline::getName).toList();
+    System.out.println(arrToMenuString(list));
+    int index = Helper.getNumberFromConsole("Enter airline number: ", list.size(), scanner);
+
+    return values[index - 1];
+  }
+
+  public static Airplane airplaneChoose(Scanner scanner) {
+    Airplane[] values = Airplane.values();
+    List<String> list = Arrays.stream(Airplane.values()).map(Airplane::getName).toList();
+    System.out.println(arrToMenuString(list));
+    int index = Helper.getNumberFromConsole("Enter airplane number: ", list.size(), scanner);
+
+    return values[index - 1];
   }
 
   public static int mainMenuAdmin(Scanner scanner, Person person) {

@@ -5,7 +5,7 @@ import java.util.Random;
 
 public abstract class Id implements Serializable {
   private final String id;
-  private static final int ID_LENGTH = 5;
+  private static final int ID_LENGTH = 10;
 
   public Id() {
     this.id = this.getRandomString();

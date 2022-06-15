@@ -17,4 +17,8 @@ public class SuccessView {
   public static void personDeleteSuccess(){
     Helper.printBorder("Person successful created", '+');
   }
+
+  public static void flightsDataGenerateSuccess(){
+    Helper.printBorder("Flights successful generated", '+');
+  }
 }

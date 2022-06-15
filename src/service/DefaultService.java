@@ -8,6 +8,11 @@ public interface DefaultService<T> {
   String FIELD_NAME = "name";
   String FIELD_PASSWORD = "password";
   String FIELD_ACCOUNT = "account";
+  String FIELD_COST = "cost";
+  String FIELD_FROM_CITY = "fromCity";
+  String FIELD_TO_CITY = "toCity";
+  String FIELD_START_DAY = "startDay";
+  String FIELD_END_DAY = "endDay";
 
   void add(Map<String, String> data);
 

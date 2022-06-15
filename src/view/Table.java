@@ -24,8 +24,8 @@ public class Table {
     maxes.add(String.valueOf(flights.size()).length());
     maxes.add(Id.getLength());
     maxes.add(flights.stream()
-        .max(Comparator.comparingInt(f -> f.getTime().length()))
-        .get().getTime().length());
+        .max(Comparator.comparingInt(f -> f.getStringTime().length()))
+        .get().getStringTime().length());
     maxes.add(flights.stream()
         .max(Comparator.comparingInt(f -> f.getFromCity().getName().length()))
         .get().getFromCity().getName().length());
@@ -84,8 +84,8 @@ public class Table {
           .append(Helper.charRepeat(headerLn.get(1) - flight.getId().length(), ' '));
 
       str.append(separator)
-          .append(flight.getTime())
-          .append(Helper.charRepeat(headerLn.get(2) - flight.getTime().length(), ' '));
+          .append(flight.getStringTime())
+          .append(Helper.charRepeat(headerLn.get(2) - flight.getStringTime().length(), ' '));
 
       str.append(separator)
           .append(flight.getFromCity().getName())
@@ -222,8 +222,8 @@ public class Table {
         .max(Comparator.comparingInt(f -> f.getFlight().getToCity().getName().length()))
         .get().getFlight().getToCity().getName().length());
     maxes.add(tickets.stream()
-        .max(Comparator.comparingInt(f -> f.getFlight().getTime().length()))
-        .get().getFlight().getTime().length());
+        .max(Comparator.comparingInt(f -> f.getFlight().getStringTime().length()))
+        .get().getFlight().getStringTime().length());
     maxes.add(tickets.stream()
         .max(Comparator.comparingInt(f -> f.getFlight().getAirline().getName().length()))
         .get().getFlight().getAirline().getName().length());
@@ -278,8 +278,8 @@ public class Table {
           .append(Helper.charRepeat(headerLn.get(3) - ticket.getFlight().getToCity().getName().length(), ' '));
 
       str.append(separator)
-          .append(ticket.getFlight().getTime())
-          .append(Helper.charRepeat(headerLn.get(4) - ticket.getFlight().getTime().length(), ' '));
+          .append(ticket.getFlight().getStringTime())
+          .append(Helper.charRepeat(headerLn.get(4) - ticket.getFlight().getStringTime().length(), ' '));
 
       str.append(separator)
           .append(ticket.getFlight().getAirline().getName())

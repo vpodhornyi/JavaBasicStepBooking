@@ -113,7 +113,7 @@ public class App {
             this.flightController.printAllFlights();
             break;
           case 3:
-            this.flightController.printAllFlights();
+            this.flightController.printFlightsWithFilter(this.scanner);
             break;
           case 4:
             this.personController.createPerson(this.scanner);
@@ -136,7 +136,7 @@ public class App {
           case 10:
             return;
         }
-      } catch (NumberException | EmptyException | PersonNameException | NameException e) {
+      } catch (NumberException | EmptyException | PersonNameException | NameException | CostException | TimeException e) {
         Helper.printBorder(e.getMessage(), '*');
       }
     }
@@ -151,7 +151,7 @@ public class App {
             this.flightController.printAllFlights();
             break;
           case 2:
-            this.flightController.printAllFlights();
+            this.flightController.printFlightsWithFilter(this.scanner);
             break;
           case 3:
             this.flightController.bookingTicketForHimself(this.scanner, this.person);
@@ -165,7 +165,7 @@ public class App {
           case 6:
             return;
         }
-      } catch (NumberException | EmptyException | FlightException | TicketNotExist e) {
+      } catch (NumberException | EmptyException | FlightException | TicketNotExist | CostException | TimeException e) {
         Helper.printBorder(e.getMessage(), '*');
       }
     }

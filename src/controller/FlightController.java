@@ -4,6 +4,7 @@ import exception.EmptyException;
 import exception.FlightException;
 import exception.FreeTicketException;
 import exception.NotEnoughMoney;
+import model.City;
 import model.Flight;
 import model.Person;
 import model.Ticket;
@@ -90,6 +91,7 @@ public class FlightController {
 
   public void generateDataFLights(List<Flight> flights) {
     this.flightService.setFlights(flights);
+    SuccessView.flightsDataGenerateSuccess();
   }
 
   public void printAllFlights() {
@@ -101,5 +103,34 @@ public class FlightController {
     }
 
     throw new EmptyException();
+  }
+
+  public void printFlightsWithFilter(Scanner scanner) {
+    int filterNum = MenuView.flightFilterChoose(scanner);
+
+    switch (filterNum) {
+      case 1:
+        Table.printFlights(this.flightService.findAllWithCityFrom(MenuView.citiesChoose(scanner)));
+        break;
+      case 2:
+        Table.printFlights(this.flightService.findAllWithCityTo(MenuView.citiesChoose(scanner)));
+        break;
+     case 3:
+       Table.printFlights(this.flightService.findAllWithCityFromTo(MenuView.citiesFromToChoose(scanner)));
+        break;
+      case 4:
+        Table.printFlights(this.flightService.findAllWithAirline(MenuView.airlineChoose(scanner)));
+        break;
+      case 5:
+        Table.printFlights(this.flightService.findAllWithAirplane(MenuView.airplaneChoose(scanner)));
+        break;
+      case 6:
+        Table.printFlights(this.flightService.findAllWithMinCost(ConsoleView.getMinCost(scanner)));
+        break;
+      case 7:
+        Table.printFlights(this.flightService.findAllWithTime(ConsoleView.getDate(scanner)));
+      case 8:
+        return;
+    }
   }
 }

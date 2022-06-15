@@ -48,8 +48,12 @@ public class Flight extends Id {
     return airline;
   }
 
-  public String getTime() {
+  public String getStringTime() {
     return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date(this.time));
+  }
+
+  public long getTime() {
+    return this.time;
   }
 
   public Set<Ticket> getTickets() {
