@@ -3,6 +3,7 @@ import controller.PersonController;
 import dao.ListFlightDao;
 import dao.ListPersonDao;
 import exception.*;
+import helper.Generator;
 import helper.Helper;
 import logger.Logger;
 import model.*;
