@@ -30,8 +30,10 @@ public class Helper {
   public static void printBorder(String str, Character ch) {
     int ln = str.length() + 4;
 
+    System.out.println();
     System.out.println(charRepeat(ln, ch));
     System.out.println("- " + str + " -");
     System.out.println(charRepeat(ln, ch));
+    System.out.println();
   }
 }

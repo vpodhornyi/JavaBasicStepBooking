@@ -8,14 +8,15 @@ import java.util.Set;
 public abstract class Person extends Id implements Serializable {
   private final String name;
   private final String password;
-  private final Double account = 500.0;
+  private Double account = 0.0;
 
   private final Set<Ticket> tickets;
 
-  public Person(String name, String password) {
+  public Person(String name, String password, Double account) {
     super();
     this.name = name;
     this.password = password;
+    this.account = account;
     this.tickets = new HashSet<>();
   }
 
@@ -27,6 +28,10 @@ public abstract class Person extends Id implements Serializable {
     return password;
   }
 
+  public void setAccount(Double account) {
+    this.account = account;
+  }
+
   public Double getAccount() {
     return account;
   }
@@ -35,18 +40,14 @@ public abstract class Person extends Id implements Serializable {
     return new HashSet<>(this.tickets);
   }
 
-  public void addTicket(Ticket ticket) {
-    tickets.add(ticket);
-  }
-
   public void booking(Ticket ticket) {
-    this.addTicket(ticket);
+    tickets.add(ticket);
     ticket.setOwner(this);
   }
 
-  public void booking(Person person, Ticket ticket) {
-    person.addTicket(ticket);
-    ticket.setOwner(person);
+  public void unbooking(Ticket ticket) {
+    tickets.remove(ticket);
+    ticket.setOwner(null);
   }
 
   public void removeBooking(Ticket ticket) {

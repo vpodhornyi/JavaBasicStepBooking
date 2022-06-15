@@ -1,6 +1,5 @@
 package view;
 
-import exception.NumberException;
 import helper.Helper;
 import model.Person;
 
@@ -9,10 +8,11 @@ import java.util.Scanner;
 public class MenuView {
 
   private static void printBorder(String str1, String str2) {
-    int ln = str1.length() + str2.length() + 6;
+    int ln = str2.length() + 6;
 
     System.out.println(Helper.charRepeat(ln, '-'));
-    System.out.println(str1 + "Menu: " + str2);
+    System.out.print(str1);
+    System.out.println("Menu: " + str2);
     System.out.println(Helper.charRepeat(ln, '-'));
   }
 
@@ -35,14 +35,17 @@ public class MenuView {
   }
 
   public static int mainMenu(Scanner scanner, Person person) {
-    printBorder(person.getWelcomeString() + " | ", "" +
+    printBorder(person.getWelcomeString() + "\n", "" +
         "(1) Generate data, " +
         "(2) Show flights, " +
-        "(3) Create Client, " +
-        "(4) Delete Client, " +
-        "(5) Show Persons, " +
-        "(6) Booking flight, " +
-        "(7) Logout");
-    return Helper.getNumberFromConsole("Enter menu number: ", 7, scanner);
+        "(3) Show flights (filter), " +
+        "(4) Create Client, " +
+        "(5) Delete Client, " +
+        "(6) Show Persons, " +
+        "(7) Booking flight, " +
+        "(8) Unhooking flight, " +
+        "(9) Show booking flights, " +
+        "(10) Logout");
+    return Helper.getNumberFromConsole("Enter menu number: ", 10, scanner);
   }
 }

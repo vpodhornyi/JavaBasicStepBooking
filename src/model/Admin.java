@@ -1,9 +1,9 @@
 package model;
 
-public class Admin extends Client{
+public class Admin extends Person{
 
-  public Admin(String name, String password) {
-    super(name, password);
+  public Admin(String name, String password, Double account) {
+    super(name, password, account);
   }
 
   public boolean isAdmin(){

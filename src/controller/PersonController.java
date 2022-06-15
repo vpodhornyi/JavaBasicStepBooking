@@ -24,7 +24,7 @@ public class PersonController {
   }
 
   public void createPerson(Scanner scanner) {
-    Map<String, String> data = ConsoleView.getNamePassword(scanner);
+    Map<String, String> data = ConsoleView.getNamePasswordAccount(scanner);
 
     personService.add(data);
   }

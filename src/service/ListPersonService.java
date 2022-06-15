@@ -25,7 +25,13 @@ public class ListPersonService implements PersonService {
 
     if (optionalPerson.isPresent()) throw new PersonNameException();
 
-    personDao.add(new Client(data.get(FIELD_NAME), data.get(FIELD_PASSWORD)));
+    try {
+      Double account = Double.parseDouble(data.get(FIELD_ACCOUNT));
+      personDao.add(new Client(data.get(FIELD_NAME), data.get(FIELD_PASSWORD), account));
+
+    } catch (Exception e) {
+      throw new AccountException();
+    }
   }
 
   @Override

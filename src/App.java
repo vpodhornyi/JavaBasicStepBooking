@@ -30,7 +30,7 @@ public class App {
     this.generator = new Generator();
 
     // create Admin
-    listPersonDao.add(new Admin("root", "root"));
+    listPersonDao.add(new Admin("root", "root", 100_000.0));
   }
 
   private void booking() {
@@ -49,7 +49,29 @@ public class App {
             return;
           default:
         }
-      } catch (NumberException | FlightException | FreeTicketException | PersonNotExistException e) {
+      } catch (NumberException | FlightException | FreeTicketException | PersonNotExistException | NotEnoughMoney e) {
+        Helper.printBorder(e.getMessage(), '*');
+      }
+    }
+  }
+
+  private void unbooking() {
+    while (true) {
+      try {
+        int menuNumber = MenuView.bookingChoose(this.scanner);
+
+        switch (menuNumber) {
+          case 1:
+            this.flightController.unbookingTicketForHimself(this.scanner, this.person);
+            break;
+          case 2:
+            this.flightController.unbookingTicketForClient(this.scanner);
+            break;
+          case 3:
+            return;
+          default:
+        }
+      } catch (NumberException | FlightException | FreeTicketException | PersonNotExistException | NotEnoughMoney e) {
         Helper.printBorder(e.getMessage(), '*');
       }
     }
@@ -69,18 +91,27 @@ public class App {
             this.flightController.printAllFlights();
             break;
           case 3:
-            this.personController.createPerson(this.scanner);
+            this.flightController.printAllFlights();
             break;
           case 4:
-            this.personController.deletePerson(this.scanner);
+            this.personController.createPerson(this.scanner);
             break;
           case 5:
-            this.personController.printAllPersons();
+            this.personController.deletePerson(this.scanner);
             break;
           case 6:
-            this.booking();
+            this.personController.printAllPersons();
             break;
           case 7:
+            this.booking();
+            break;
+          case 8:
+            this.unbooking();
+            break;
+          case 9:
+            this.flightController.printAllFlights();
+            break;
+          case 10:
             return;
         }
       } catch (NumberException | EmptyException | PersonNameException | NameException e) {

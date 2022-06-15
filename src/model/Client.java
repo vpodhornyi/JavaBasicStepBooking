@@ -1,11 +1,11 @@
 package model;
 
 public class Client extends Person {
-  public Client(String name, String password) {
-    super(name, password);
+  public Client(String name, String password, Double account) {
+    super(name, password, account);
   }
 
-  public boolean isClient(){
+  public boolean isClient() {
     return true;
   }
 

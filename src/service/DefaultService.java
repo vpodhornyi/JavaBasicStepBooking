@@ -7,6 +7,7 @@ public interface DefaultService<T> {
   String FIELD_ID = "id";
   String FIELD_NAME = "name";
   String FIELD_PASSWORD = "password";
+  String FIELD_ACCOUNT = "account";
 
   void add(Map<String, String> data);
 

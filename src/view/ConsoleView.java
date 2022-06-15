@@ -19,6 +19,22 @@ public class ConsoleView {
     return data;
   }
 
+  public static Map<String, String> getNamePasswordAccount(Scanner scanner) {
+    Map<String, String> data = new HashMap<>();
+    System.out.print("Enter name: ");
+    String name = scanner.nextLine();
+    System.out.print("Enter password: ");
+    String password = scanner.nextLine();
+    System.out.print("Enter balance account: ");
+    String account = scanner.nextLine();
+
+    data.put("name", name);
+    data.put("password", password);
+    data.put("account", account);
+
+    return data;
+  }
+
   public static Map<String, String> getName(Scanner scanner) {
     Map<String, String> data = new HashMap<>();
     System.out.print("Enter name: ");
