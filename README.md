@@ -48,3 +48,28 @@ JavaBasicStepBooking/
 │ └── utils/
 ├── .gitignore
 └── README.md
+```
+
+## 🛠 Requirements
+
+- Java Development Kit (JDK) version 17 or higher
+- Terminal or command-line interface
+
+## ⚙️ How to Run
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/vpodhornyi/JavaBasicStepBooking.git
+cd JavaBasicStepBooking/src
+```
+2 **Compile the source files:**
+
+```bash
+javac *.java
+```
+3 **Run the application:**
+
+```bash
+java Main
+```
