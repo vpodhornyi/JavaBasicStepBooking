@@ -1,6 +1,6 @@
 package view;
 
-import helper.Helper;
+import utils.Helper;
 
 public class SuccessView {
   public static void bookingSuccess(){

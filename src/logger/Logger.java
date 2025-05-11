@@ -25,18 +25,18 @@ public class Logger {
   }
 
   public static void saveErrorLogs(Person person, String message) {
-    save("Error: " + new Date() + "; Name: " + person.getName() + "; " + message);
+    save("Error: " + new Date() + "; Name: " + person.getName() + "; Message: " + message);
   }
 
   public static void loadFileErrorLogs(String message) {
-    save("Load file Error: " + new Date() + "; " + message);
+    save("Load file Error: " + new Date() + "; Message: " + message);
   }
 
   public static void saveFileErrorLogs(String message) {
-    save("Save file Error: " + new Date() + "; " + message);
+    save("Save file Error: " + new Date() + "; Message: " + message);
   }
 
   public static void saveLoginErrorLogs(String message) {
-    save("Login error: " + new Date() + "; " + message);
+    save("Login error: " + new Date() + "; Message: " + message);
   }
 }
