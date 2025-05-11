@@ -1,10 +1,50 @@
-#### Person: NAME IS UNIQ
-#### Admin: (name = root, password = root) generate database, create/delete client, booking/unbooking for himself or client show all persons,
-#### Client: booking/unbooking for himself
-    
+# JavaBasicStepBooking
 
-#### Generate database:
-                
-1. Login Admin
-2. Enter count of flights
-3. Enter count of days (from current day)
+A simple Java console application that simulates an airline ticket booking system. The project supports two user roles — **Admin** and **Client** — and allows users to book and manage flight tickets through a text-based interface.
+
+## 🚀 Features
+
+- **Admin capabilities:**
+    - name = root, password = root
+    - Generate a flight schedule (database).
+    - View all users.
+    - Create and delete client accounts.
+    - Book or cancel flights for any user.
+
+- **Client capabilities:**
+    - NAME IS UNIQ
+    - View available flights.
+    - Book or cancel flights for themselves.
+
+## 🏗 Architecture
+
+The project follows the **Model-View-Controller (MVC)** pattern:
+
+- **Model** – Handles business logic and data structures (users, flights, tickets).
+- **View** – Manages console input/output.
+- **Controller** – Manages interactions between users and the system logic.
+
+## 💾 Data Persistence
+
+- The project uses **file-based storage** to persist user and flight data.
+- Data is saved in *.dat files, simulating a lightweight database.
+
+## 📋 Logging
+
+- The application includes **logging functionality to text file** to track actions and system events.
+- Log messages help with debugging and monitoring application behavior.
+
+## 📂 Project Structure
+```plaintext
+JavaBasicStepBooking/
+├── src/
+│ ├── Main.java
+│ ├── controllers/
+│ ├── dao/
+│ ├── exceptions/
+│ ├── loger/
+│ ├── models/
+│ ├── views/
+│ └── utils/
+├── .gitignore
+└── README.md
