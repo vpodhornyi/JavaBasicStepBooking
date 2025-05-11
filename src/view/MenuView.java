@@ -1,13 +1,12 @@
 package view;
 
-import helper.Helper;
+import utils.Helper;
 import model.Airline;
 import model.Airplane;
 import model.City;
 import model.Person;
 
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class MenuView {
