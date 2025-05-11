@@ -12,7 +12,7 @@ A simple Java console application that simulates an airline ticket booking syste
     - Book or cancel flights for any user.
 
 - **Client capabilities:**
-    - NAME IS UNIQ
+    - *Name is uniq*
     - View available flights.
     - Book or cancel flights for themselves.
 
