@@ -1,6 +1,6 @@
 # JavaBasicStepBooking
 
-A simple Java console application that simulates an airline ticket booking system. The project supports two user roles — **Admin** and **Client** — and allows users to book and manage flight tickets through a text-based interface.
+A simple **Java** console application that simulates an airline ticket booking system. The project supports two user roles — **Admin** and **Client** — and allows users to book and manage flight tickets through a text-based interface.
 
 ## 🚀 Features
 
